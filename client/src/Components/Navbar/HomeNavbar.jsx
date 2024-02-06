@@ -1,18 +1,25 @@
 
-import { Slide_Menu } from "../Slide_Menu/Slide_menu";
+import { Slide_Menu } from "../Slide_Menu/Main_Slide_Menu";
 import { User_Slide_Menu } from "../Slide_Menu/User_Slide_Menu";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
-
+import { GiHamburgerMenu } from "react-icons/gi";
 import BlackLogo from "../../Assets/BlackLogo.png"
+import { useState } from "react";
+
+
+
 const Home_Sm_Nav = ()=>{
+
     return (
         <>
+        
         <div className="lg:hidden w-full h-16 flex items-center  border-2 border-red-400">
-            <div className="Hamburger_Menu w-8 h-8 mx-auto  border-2 border-teal-400 ">
-                <Slide_Menu className=" "/>
-            </div>
             
+        <div id="Hamburger_Menu"  className=" w-20 h-full border-2 border-red-400">
+              <Slide_Menu/>
+        </div>
+
             <div id="SVGLogo" className="w-auto h-full flex items-center mx-auto   border-2 border-green-400" >
                 <img src={BlackLogo} className="object-cover w-11/12 stroke-2 mx-auto h-full"></img> 
             </div>
