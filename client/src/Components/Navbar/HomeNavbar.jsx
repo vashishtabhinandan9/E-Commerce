@@ -1,5 +1,5 @@
 
-import { Slide_Menu } from "../Slide_Menu/Main_Slide_Menu";
+import { Memoized_Slide_Menu } from "../Slide_Menu/Main_Slide_Menu";
 import { User_Slide_Menu } from "../Slide_Menu/User_Slide_Menu";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
@@ -9,26 +9,34 @@ import { useState } from "react";
 
 
 
+
 const Home_Sm_Nav = ()=>{
-
     return (
-        <>
-        
+      <>
         <div className="lg:hidden w-full h-16 flex items-center  border-2 border-red-400">
-            
-        <div id="Hamburger_Menu"  className=" w-20 h-full border-2 border-red-400">
-              <Slide_Menu/>
-        </div>
+          <div
+            id="Nav_Icon"
+            className=" w-20 h-full border-2 border-red-400 py-2"
+          >
+            <Memoized_Slide_Menu Icon={<GiHamburgerMenu className="w-full h-full"/>} Name="Hamburger_Menu"/>
+          </div>
 
-            <div id="SVGLogo" className="w-auto h-full flex items-center mx-auto   border-2 border-green-400" >
-                <img src={BlackLogo} className="object-cover w-11/12 stroke-2 mx-auto h-full"></img> 
-            </div>
-            <div className="Cart_Icon w-8 h-8 mx-auto">
-            <FaShoppingCart className="w-full h-full" />
-            </div>
+          <div
+            id="SVGLogo"
+            className="w-auto h-full flex items-center mx-auto   border-2 border-green-400"
+          >
+            <img
+              src={BlackLogo}
+              className="object-cover w-11/12 stroke-2 mx-auto h-full"
+            ></img>
+          </div>
+          <div className="Cart_Icon w-8 h-8 mx-auto">
+          <Memoized_Slide_Menu Icon={ <FaShoppingCart className="w-full h-full"/>} Name="Cart_Menu"/>
+          
+          </div>
         </div>
-        </>   
-    )
+      </>
+    );
 }
 
 const Home_Lg_Nav = ()=>{
@@ -64,7 +72,8 @@ const Home_Lg_Nav = ()=>{
               <FaRegHeart className="w-full h-full"/>
             </div>
             <div id="Cart_Icon" className=" w-8 h-8 mx-auto">
-            <FaShoppingCart className="w-full h-full" />
+            <Memoized_Slide_Menu Icon={ <FaShoppingCart className="w-full h-full"/>} Name="Cart_Menu"/>
+         
             </div>
           </div>
            
@@ -77,7 +86,7 @@ export const Nav =()=>{
     return (
         <>
          <Home_Lg_Nav/>
-    <Home_Sm_Nav/>
+         <Home_Sm_Nav/>
         </>
     )
    
