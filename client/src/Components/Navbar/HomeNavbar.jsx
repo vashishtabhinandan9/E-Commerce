@@ -1,15 +1,10 @@
 
-import { Memoized_Slide_Menu } from "../Slide_Menu/Main_Slide_Menu";
-import { User_Slide_Menu } from "../Slide_Menu/User_Slide_Menu";
+import { Left_Slide_Menu } from "../Slide_Menu/Left_Slide_Menu";
+import { Right_Slide_Menu } from "../Slide_Menu/Right_Slide_Menu";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { FiUser } from "react-icons/fi";
 import BlackLogo from "../../Assets/BlackLogo.png"
-import { useState } from "react";
-
-
-
-
 const Home_Sm_Nav = ()=>{
     return (
       <>
@@ -18,7 +13,7 @@ const Home_Sm_Nav = ()=>{
             id="Nav_Icon"
             className=" w-20 h-full border-2 border-red-400 py-2"
           >
-            <Memoized_Slide_Menu Icon={<GiHamburgerMenu className="w-full h-full"/>} Name="Hamburger_Menu"/>
+            <Left_Slide_Menu/>
           </div>
 
           <div
@@ -30,9 +25,8 @@ const Home_Sm_Nav = ()=>{
               className="object-cover w-11/12 stroke-2 mx-auto h-full"
             ></img>
           </div>
-          <div className="Cart_Icon w-8 h-8 mx-auto">
-          <Memoized_Slide_Menu Icon={ <FaShoppingCart className="w-full h-full"/>} Name="Cart_Menu"/>
-          
+          <div className="Cart_Icon w-8 h-8 mr-16">
+          <Right_Slide_Menu Icon={ <FaShoppingCart className="w-full h-full"/>} Name="Cart_Menu"/>
           </div>
         </div>
       </>
@@ -67,14 +61,15 @@ const Home_Lg_Nav = ()=>{
           </div>
           
           <div id="Icons" className="gap-2 flex items-baseline m-auto">
-            <div><User_Slide_Menu/></div>
+            <div id="User_Icon"  className=" w-8 h-8 mx-auto">
+            <Right_Slide_Menu Icon={ <FiUser className="w-full h-full"/>} Name="User_Menu"/>
+            </div>
             <div  className=" w-8 h-8 mx-auto">
               <FaRegHeart className="w-full h-full"/>
             </div>
             <div id="Cart_Icon" className=" w-8 h-8 mx-auto">
-            <Memoized_Slide_Menu Icon={ <FaShoppingCart className="w-full h-full"/>} Name="Cart_Menu"/>
-         
-            </div>
+            <Right_Slide_Menu Icon={ <FaShoppingCart className="w-full h-full"/>} Name="Cart_Menu"/>
+           </div>
           </div>
            
         </div>
