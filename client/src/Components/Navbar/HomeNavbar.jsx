@@ -62,13 +62,13 @@ const Home_Lg_Nav = ()=>{
           
           <div id="Icons" className="gap-2 flex items-baseline m-auto">
             <div id="User_Icon"  className=" w-8 h-8 mx-auto">
-            <Right_Slide_Menu Icon={ <FiUser className="w-full h-full"/>} Name="User_Menu"/>
+            <Right_Slide_Menu Icon={ <FiUser className="w-8 h-8"/>} Name="User_Menu"/>
             </div>
             <div  className=" w-8 h-8 mx-auto">
               <FaRegHeart className="w-full h-full"/>
             </div>
             <div id="Cart_Icon" className=" w-8 h-8 mx-auto">
-            <Right_Slide_Menu Icon={ <FaShoppingCart className="w-full h-full"/>} Name="Cart_Menu"/>
+            <Right_Slide_Menu Icon={ <FaShoppingCart className="w-8 h-8"/>} Name="Cart_Menu"/>
            </div>
           </div>
            

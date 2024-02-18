@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { SignIn } from "../Auth/SignIn";
+import { SignIn } from "../Auth/Auth";
 export function Left_Slide_Menu() {
   
   const [Isopen,setIsopen]=useState(false);
