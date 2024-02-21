@@ -6,9 +6,7 @@ import { Right_Slide_Menu } from "../Slide_Menu/Right_Slide_Menu";
 import { SlGrid } from "react-icons/sl";
 import { PiMedalFill } from "react-icons/pi";
 import { RiQuestionnaireLine } from "react-icons/ri";
-
-
-
+import { Up_Slide_Menu } from "../Slide_Menu/Up_Slide_Menu";
 export const MobileTabs = () => {
     const [allTypes, setAllTypes] = useState([
       {
@@ -23,12 +21,12 @@ export const MobileTabs = () => {
       },
       {
         id: `wishlist`,
-        icon: <FaRegHeart />,
+        icon: <FaRegHeart  />,
         name: "WISHLIST",
       },
       {
         id: `rewards`,
-        icon: <PiMedalFill />,
+        icon:  <Up_Slide_Menu Icon={ <PiMedalFill className="w-5 h-5 mx-auto"/>} Name="Bank_Menu"/>,
         name: "REWARDS",
       },
       {
@@ -41,6 +39,7 @@ export const MobileTabs = () => {
     return (
       <>
         <div className ="lg:hidden bg-white shadow-lg p-3 fixed bottom-0 z-10 w-full flex items-center justify-between md:justify-evenly text-zinc-500 border">
+          
           {allTypes.map((items) => (
             <div key={items.id} className={"flex flex-col  relative items-center text-xl hover:text-black group"}>
               <div className={"absolute -top-2 w-8 h-2 border-t-2 group-hover:border-black  "}/> 
