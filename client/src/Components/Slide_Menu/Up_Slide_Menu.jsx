@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import { SignIn } from "../Auth/Auth";
 import Bank from "../Bank/Bank";
+import Help from "../Help/Help";
+import { GiPiggyBank } from "react-icons/gi";
+import { MdOutlineSupportAgent } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { useRef } from 'react';
 import { motion } from "framer-motion"
@@ -46,14 +49,25 @@ export function Up_Slide_Menu({Icon, Name}) {
 
      
       <aside
-        id="Side_Menu"
+        id="Up_Menu"
         // onScroll={handleScroll}
-        className={`fixed top-0 right-0 w-screen h-screen md:w-1/3 overflow-auto  border-black border-2  z-10  bg-slate-100  transform transition-all ease-out duration-500
+        className={`fixed top-0 right-0 w-screen h-screen md:w-1/3 overflow-auto   z-10  bg-slate-100  transform transition-all ease-out duration-500
         ${Isopen ? "translate-y-0" : "translate-y-full"}  `}
       >
-         <div
+        <div
+          id="Heading"
+          className={` sticky top-0 z-20 w-full h-32 ${Name == "Bank_Menu" ?"bg-gradient-to-t from-40% from-[#001134] to-[#02256C]":"bg-black"} rounded-b-2xl   text-center text-white`}>
+           <div className=" flex justify-between  items-center pt-8   gap-2 ">
+            <div className="flex items-center gap-8 ml-8">
+            {Name == "Bank_Menu" ? <GiPiggyBank className="w-12 h-12  "/> : <MdOutlineSupportAgent className="w-12 h-12  "/> }
+            <div className="font-meduim h-full text-lg text-wrap text-left ">
+            <p className="text-xl font-bold mb-1">Hey there 👋</p>
+            {Name == "Bank_Menu" ? <p className="">Welcome! Your Money Bank 💲</p>: 'Welcome to Support 👩‍💼'}
+            </div>
+            </div>
+            <div
           id="close"
-          className=" sticky top-2 float-right z-10 w-8 h-8 m-2  text-white  "
+          className="  float-right z-10 w-8 h-8 mr-4  text-white  "
         >
           <button
             className="w-full h-full"
@@ -64,25 +78,10 @@ export function Up_Slide_Menu({Icon, Name}) {
             <RxCross2 className="w-full h-full " />
           </button>
           </div>
-
-          
-          
-        <div
-          id="Heading_Before_scroll"
-          
-          className={`   sticky top-0 w-full h-80  rounded-b-3xl border-red-800 border-2 bg-gradient-to-t from-40% from-[#001134] to-[#02256C] text-center text-white`}>
-         
-        
-            <h3
-          >
-              Welcome to <br />
-              Your Money Bank
-            </h3>
-         
-          
+           </div>
         </div>
 
-        {Name == "Bank_Menu" ? <Bank /> : <Bank />}
+        {Name == "Bank_Menu" ? <Bank /> : <Help />}
       </aside>
     </>
   );

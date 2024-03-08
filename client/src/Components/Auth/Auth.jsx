@@ -6,7 +6,7 @@ export function SignIn(){
     const [AlreadyUser,setAlreadyUser]= useState(false);
     return (
       <>
-      <h1 className="absolute top-2 left-20 font-medium font-sans text-lg antialiased text-gray-700" > {AlreadyUser ? "LOGIN" : "REGISTER"}  </h1>
+      <h1 className="absolute top-2 left-10 font-medium font-sans text-lg antialiased text-gray-700" > {AlreadyUser ? "LOGIN" : "REGISTER"}  </h1>
       { AlreadyUser && <form className="  mx-auto  py-2 px-8 w-full  flex flex-col ">
         
         <div className="flex flex-col relative my-4">

@@ -31,7 +31,7 @@ export const MobileTabs = () => {
       },
       {
         id: `help`,
-        icon: <RiQuestionnaireLine />,
+        icon:  <Up_Slide_Menu Icon={ <RiQuestionnaireLine  className="w-5 h-5 mx-auto"/>} Name="Help_Menu"/> ,
         name: "HELP",
       }
     ]);

@@ -36,7 +36,7 @@ export function Right_Slide_Menu({Icon, Name}) {
               <RxCross2 className="w-full h-full  text-gray-800 hover:{transform duaration-300 rotate-45}" />
             </button>
             <div className="mx-4">
-            <h3></h3>{/**heading like loginsingup cart */}
+            <h3 className="font-medium font-sans text-lg antialiased text-gray-700"> {Name== "Cart_Menu" ? "SHOPPING CART": ""} </h3>{/**heading like loginsingup cart */}
             </div>
             
           </div>
