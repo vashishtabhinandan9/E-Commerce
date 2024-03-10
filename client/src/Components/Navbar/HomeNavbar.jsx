@@ -4,16 +4,19 @@ import { Right_Slide_Menu } from "../Slide_Menu/Right_Slide_Menu";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
 import { FiUser } from "react-icons/fi";
+import { IoIosSearch } from "react-icons/io";
 import BlackLogo from "../../Assets/BlackLogo.png"
+import { SignIn } from "../Auth/Auth";
+import SeachPanelMobile from "../SearchPanelMobile/SeachPanelMobile";
 const Home_Sm_Nav = ()=>{
     return (
       <>
         <div className="lg:hidden w-full h-16 flex items-center  border-2 border-red-400">
           <div
-            id="Nav_Icon"
-            className=" w-20 h-full border-2 border-red-400 py-2"
+            id="NavSearch_Icon"
+            className=" w-20 h-full mt-2 py-2"
           >
-            <Left_Slide_Menu/>
+            <Left_Slide_Menu Component={<SeachPanelMobile/>} Icon={<IoIosSearch className="w-full h-8" />} Heading="SEARCH OUR SITE"/>
           </div>
 
           <div
@@ -25,8 +28,9 @@ const Home_Sm_Nav = ()=>{
               className="object-cover w-11/12 stroke-2 mx-auto h-full"
             ></img>
           </div>
+
           <div className="Cart_Icon w-8 h-8 mr-16">
-          <Right_Slide_Menu Icon={ <FaShoppingCart className="w-full h-full"/>} Name="Cart_Menu"/>
+          <Right_Slide_Menu Component="Shooping cart" Icon={ <FaShoppingCart className="w-full h-full"/>} Heading="SHOPPING CART"/>
           </div>
         </div>
       </>
@@ -62,13 +66,13 @@ const Home_Lg_Nav = ()=>{
           
           <div id="Icons" className="gap-2 flex items-baseline m-auto">
             <div id="User_Icon"  className=" w-8 h-8 mx-auto">
-            <Right_Slide_Menu Icon={ <FiUser className="w-8 h-8"/>} Name="User_Menu"/>
+            <Right_Slide_Menu Component={<SignIn/>} Icon={ <FiUser className="w-8 h-8"/>} Heading=""/>
             </div>
             <div  className=" w-8 h-8 mx-auto">
               <FaRegHeart className="w-full h-full"/>
             </div>
             <div id="Cart_Icon" className=" w-8 h-8 mx-auto">
-            <Right_Slide_Menu Icon={ <FaShoppingCart className="w-8 h-8"/>} Name="Cart_Menu"/>
+            <Right_Slide_Menu Component="Shopping cart" Icon={ <FaShoppingCart className="w-8 h-8"/>} Heading="SHOPPING CART"/>
            </div>
           </div>
            

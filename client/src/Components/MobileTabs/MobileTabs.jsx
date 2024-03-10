@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { FaRegHeart } from "react-icons/fa6";
 import { FiUser } from "react-icons/fi";
 import { Right_Slide_Menu } from "../Slide_Menu/Right_Slide_Menu";
+import { SignIn } from "../Auth/Auth";
+
 import { SlGrid } from "react-icons/sl";
 import { PiMedalFill } from "react-icons/pi";
 import { RiQuestionnaireLine } from "react-icons/ri";
@@ -16,7 +18,7 @@ export const MobileTabs = () => {
       },
       {
         id: "account",
-        icon:  <Right_Slide_Menu Icon={ <FiUser className="w-5 h-5 mx-auto"/>} Name="User_Menu"/>,
+        icon: <Right_Slide_Menu Component={<SignIn/>} Icon={ <FiUser className="w-5 h-5 mx-auto"/>} Heading=""/>,
         name: "ACCOUNT",
       },
       {
