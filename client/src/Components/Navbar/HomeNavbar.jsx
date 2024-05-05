@@ -11,7 +11,7 @@ import SeachPanelMobile from "../SearchPanelMobile/SeachPanelMobile";
 const Home_Sm_Nav = ()=>{
     return (
       <>
-        <div className="lg:hidden w-full h-16 flex items-center  border-2 border-red-400">
+        <div className="lg:hidden w-full h-16 flex items-center  border-b-4 border-gray-200">
           <div
             id="NavSearch_Icon"
             className=" w-20 h-full mt-2 py-2"
@@ -40,7 +40,7 @@ const Home_Sm_Nav = ()=>{
 const Home_Lg_Nav = ()=>{
     return (
         <>
-        <div className="hidden lg:flex h-16  border-2 border-red-400" >
+        <div className="hidden lg:flex h-16 border-b-4 border-gray-200" >
 
         <div id="SVGLogo" className="w-40 h-full flex items-center mx-auto   border-2 border-green-400" >
             <img src={BlackLogo} className="object-fill w-full h-full  mx-auto "></img> 

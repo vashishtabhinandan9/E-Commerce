@@ -2,80 +2,117 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Foodlig from "../../Assets/Fashion.png"
+import Foodlig from "../../Assets/FoodIcon-removebg-preview.png"
+import GroceryImg from "../../Assets/GroceriesIcon.png"
+import Electronics from "../../Assets/ElectronicsIconjpeg.jpeg"
+import { IoFastFoodOutline, IoNutritionOutline } from "react-icons/io5";
+import { Link} from "react-router-dom";
 
-const PictureCarousalCard = () => {
+
+ const NextArrow = (props) => {
   return (
-    <>
-      <div className="w-full h-64  px-4 overflow-hidden">
-        <div className="w-full h-full relative">
-          <img
-            src={Foodlig}
-            alt="food"
-            className="w-full h-full  object-fit transition duration-700 ease-in-out rounded-lg"
-          />
-          <div
-            className="w-full h-full absolute inset-0  rounded-lg"
-           
-          />
-        </div>
-        <div className="absolute w-full left-8  bottom-2 text-white ">
-          <h4 className="z-10">Onam Special</h4>
-          <h6 className="z-10 flex items-center">
-            onam
-          </h6>
-        </div>
-      </div>
-    </>
+    <div
+      className={props.className}
+      style={{ ...props.style, backgroundColor: "#e23744" }}
+      onClick={props.onClick}
+    />
   );
 };
-
+ const PrevArrow = (props) => {
+  return (
+    <div
+      className={props.className}
+      style={{ ...props.style, backgroundColor: "#e23744" }}
+      onClick={props.onClick}
+    />
+  );
+};
 export default function CategoryCaousal() {
+  var Categories=[
+    {CategoryName:'something',
+      CategoryLink:"Electronics",
+      CategoryImg:Electronics
+  },
+  {CategoryName:'something',
+  CategoryLink:"Food",
+  CategoryImg:Foodlig
+  },
+  {CategoryName:'something',
+  CategoryLink:"Food",
+  CategoryImg:Foodlig
+  },
+  {CategoryName:'something',
+  CategoryLink:"",
+  CategoryImg:Foodlig
+  },
+  {CategoryName:'something',
+  CategoryLink:"Grocery",
+  CategoryImg:GroceryImg
+  },
+  {CategoryName:'something',
+  CategoryLink:"Food",
+  CategoryImg:Foodlig
+  },
+  ]
+
+  
   const settings = {
-    dots: true,
+   
     infinite: false,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-   
+    slidesToScroll: 1,
+    swipeToSlide: false,
+    nextArrow:<NextArrow/>,
+    prevArrow: <PrevArrow />,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 5,
+          slidesToScroll: 2,
           infinite: true,
-          dots: true,
+          
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 4,
+          slidesToScroll: 1,
           initialSlide: 2,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
-    ],
+    ]
   };
+
   return (
-    <div className="w-full my-40">
-      <Slider {...settings}>
-        <PictureCarousalCard />
-        <PictureCarousalCard />
-        <PictureCarousalCard />
-        <PictureCarousalCard />
-        <PictureCarousalCard />
-        <PictureCarousalCard />
-        <PictureCarousalCard />
+    <div className="w-10/12 mx-auto my-8 ">
+      <Slider {...settings} className="">
+      { Categories.map((item,index)=>{
+        return(
+          <div key={index} id="contain" className=" ">
+            <Link to={`/Category/${item.CategoryLink}`}>
+            <div className="w-20 h-20  mx-auto">
+            <img src={item.CategoryImg} className="object-fill   mx-auto"></img> 
+            </div>
+           <div className="text-center text-slate-700 text-xl">
+            {item.CategoryName}
+           </div>
+            </Link>
+         
+        
+        
+          </div>
+        )
+       })}
       </Slider>
     </div>
   )
