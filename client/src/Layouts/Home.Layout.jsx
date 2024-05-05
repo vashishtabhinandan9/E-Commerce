@@ -8,7 +8,7 @@
 import React from 'react'
 export default function Home_Layout(props) {
   return (
-    <div id='Home_layout' className='h-screen flex-col justify-center'>
+    <div id='Home_layout' className=' flex-col justify-center'>
         {props.children}
     </div>
   )

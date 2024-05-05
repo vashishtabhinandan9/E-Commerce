@@ -114,6 +114,7 @@ export default function CategoryCaousal() {
         )
        })}
       </Slider>
+    
     </div>
   )
 }
