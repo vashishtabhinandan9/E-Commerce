@@ -18,10 +18,14 @@ return (
        {Icon}
       </button>
     </div>
-
+    {Isopen && (//for the backdrop on large screen
+        <div className="fixed top-0 left-0 w-screen h-screen bg-black opacity-50 z-20" onClick={() => setIsopen(false)}>
+        </div>
+      )}
+      
     <aside
       id="Side_Menu"
-      className={` absolute top-0 left-0 overflow-auto  border-black border-2 w-screen h-screen z-30  bg-white transform  transition-transform ease-out duration-300
+      className={` absolute top-0 left-0 overflow-auto  border-black border-2 w-screen md:w-1/3 h-screen z-30  bg-white transform  transition-transform ease-out duration-300
   ${Isopen ? "translate-x-0" : "-translate-x-full"}`}
     >
       <div>

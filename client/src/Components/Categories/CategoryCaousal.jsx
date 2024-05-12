@@ -94,7 +94,7 @@ export default function CategoryCaousal() {
   };
 
   return (
-    <div className="w-10/12 mx-auto my-8 ">
+    <div className="w-10/12 mx-auto mt-4 mb-2 ">
       <Slider {...settings} className="">
       { Categories.map((item,index)=>{
         return(

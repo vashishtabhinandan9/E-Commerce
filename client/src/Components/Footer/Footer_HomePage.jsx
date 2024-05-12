@@ -22,50 +22,70 @@ var coolStuff =['accessories' ,
     'us' ,
     'offers']
 function Footer_HomePage_sm(){
-    return(
-        <>
+    return (
+      <>
         <div className="bg-black text-white p-4 w-full ">
-        <Disclosure>
-          <Disclosure.Button className=" w-full flex justify-between items-center ">
-            <span>COOL STUFF</span>
-          <div><FaChevronDown className="ui-open:rotate-180 ui-open:transform h-4 w-4" /></div>
-          </Disclosure.Button>
-          <Disclosure.Panel className="text-white px-4">
-            {coolStuff.map((item,index)=>{
-                return (<>
-                <li key={index} className='list-none'>{item}</li>
-                </>)
-            })}
-          </Disclosure.Panel>
-        </Disclosure>
-        <br/>
-        <Disclosure>
-          <Disclosure.Button className=" w-full flex justify-between items-center ">
-            <span>BORING STUFF</span>
-          <div><FaChevronDown className="ui-open:rotate-180 ui-open:transform h-4 w-4" /></div>
-          </Disclosure.Button>
-          <Disclosure.Panel className="text-white px-4">
-          {coolStuff.map((item,index)=>{
-                return (<>
-                <li key={index} className='list-none'>{item}</li>
-                </>)
-            })}
-          </Disclosure.Panel>
-        </Disclosure>
-        <br/>
-        <p className='text-3xl font-md'>reach out to us</p>
-       <span className='flex items-center'><IoMdMail className='text-xl'/><p className='text-lg'>hello@gmail.com</p></span> 
-        Follow on social media
-        <div className='w-max h-12 mt-4 flex justify-center gap-4 '>
-        <div className='border-2 w-10 h-10 rounded-full border-white flex items-center justify-center hover:animate-bounce'><FaFacebookF className='text-white m-auto'/></div>
-        <div className='border-2 w-10 h-10 rounded-full border-white flex items-center justify-center hover:animate-bounce'><FaInstagram className='text-white m-auto'/></div>
-        <div className='border-2 w-10 h-10 rounded-full border-white flex items-center justify-center hover:animate-bounce'><FaPinterest className='text-white m-auto'/></div>
-        <div className='border-2 w-10 h-10 rounded-full border-white flex items-center justify-center hover:animate-bounce'><FaYoutube className='text-white m-auto'/></div>
-
+          <Disclosure>
+            <Disclosure.Button className=" w-full flex justify-between items-center ">
+              <span>COOL STUFF</span>
+              <div>
+                <FaChevronDown className="ui-open:rotate-180 ui-open:transform h-4 w-4" />
+              </div>
+            </Disclosure.Button>
+            <Disclosure.Panel className="text-white px-4">
+              {coolStuff.map((item, index) => {
+                return (
+                  <li key={index} className="list-none">
+                    {item}
+                  </li>
+                );
+              })}
+            </Disclosure.Panel>
+          </Disclosure>
+          <br />
+          <Disclosure>
+            <Disclosure.Button className=" w-full flex justify-between items-center ">
+              <span>BORING STUFF</span>
+              <div>
+                <FaChevronDown className="ui-open:rotate-180 ui-open:transform h-4 w-4" />
+              </div>
+            </Disclosure.Button>
+            <Disclosure.Panel className="text-white px-4">
+              {coolStuff.map((item, index) => {
+                return (
+                  <>
+                    <li key={index} className="list-none">
+                      {item}
+                    </li>
+                  </>
+                );
+              })}
+            </Disclosure.Panel>
+          </Disclosure>
+          <br />
+          <p className="text-3xl font-md">reach out to us</p>
+          <span className="flex items-center">
+            <IoMdMail className="text-xl" />
+            <p className="text-lg">hello@gmail.com</p>
+          </span>
+          Follow on social media
+          <div className="w-max h-12 mt-4 flex justify-center gap-4 ">
+            <div className="border-2 w-10 h-10 rounded-full border-white flex items-center justify-center hover:animate-bounce">
+              <FaFacebookF className="text-white m-auto" />
+            </div>
+            <div className="border-2 w-10 h-10 rounded-full border-white flex items-center justify-center hover:animate-bounce">
+              <FaInstagram className="text-white m-auto" />
+            </div>
+            <div className="border-2 w-10 h-10 rounded-full border-white flex items-center justify-center hover:animate-bounce">
+              <FaPinterest className="text-white m-auto" />
+            </div>
+            <div className="border-2 w-10 h-10 rounded-full border-white flex items-center justify-center hover:animate-bounce">
+              <FaYoutube className="text-white m-auto" />
+            </div>
+          </div>
         </div>
-      </div>
-        </>
-    )
+      </>
+    );
 }
 
 function Footer_HomePage_lg() {
@@ -89,7 +109,7 @@ function Footer_HomePage_lg() {
           {coolStuff.map((item, index) => {
             return (
               <>
-                <li key={index}>
+                <li key={index} className='list-none'>
                   {item}
                 </li>
               </>

@@ -7,7 +7,7 @@ import { FiUser } from "react-icons/fi";
 import { IoIosSearch } from "react-icons/io";
 import BlackLogo from "../../Assets/BlackLogo.png"
 import { SignIn } from "../Auth/Auth";
-import SeachPanelMobile from "../SearchPanelMobile/SeachPanelMobile";
+import SeachPanelMobile from "../Left_Slide_Components/SeachPanelMobile";
 const Home_Sm_Nav = ()=>{
     return (
       <>

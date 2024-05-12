@@ -10,6 +10,7 @@ export default function Collection() {
   return (
   <>
   <Filter_Sort_Menu/>
+  <div>Collection</div>
   </>
   )
 }
