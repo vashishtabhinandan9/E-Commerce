@@ -1,10 +1,11 @@
 import React from 'react'
 
-export default function Single_product({Product_Data}) {
+
+export default function Single_Product({Product_Data}) {
   return (
     <>
 
-      <a key={Product_Data.id} href={Product_Data.href} className="group ">
+      <a key={Product_Data.id} href={Product_Data.href} className="group">
         <div className="border-2 border-black">
           <img
             src={Product_Data.imageSrc}

@@ -1,13 +1,8 @@
 import React from 'react'
 import Filter_Sort_Menu from '../Components/Filter&Sort/Filter&Sort'
-import Single_product from '../Components/Products/Single_product'
+import Single_Product from '../Components/Products/Single_Product'
 export default function Collection() {
-  const links = [
-    { href: '/account-settings', label: 'Account settings' },
-    { href: '/support', label: 'Support' },
-    { href: '/license', label: 'License' },
-    { href: '/sign-out', label: 'Sign out' },
-  ]
+ 
   //get global collection data filter it based on the route path params you get so it here 
   const Products = [
     {
@@ -53,7 +48,7 @@ export default function Collection() {
         {Products.map((item, index) => {
           return (
             <div key={index}>
-              <Single_product Product_Data={item} />
+              <Single_Product Product_Data={item} />
             </div>
           );
         })}
