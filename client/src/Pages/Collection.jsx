@@ -1,7 +1,6 @@
 import React from 'react'
 import Filter_Sort_Menu from '../Components/Filter&Sort/Filter&Sort'
 import Single_product from '../Components/Products/Single_product'
-
 export default function Collection() {
   const links = [
     { href: '/account-settings', label: 'Account settings' },
@@ -42,7 +41,7 @@ export default function Collection() {
       price: '$35',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg',
       imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
-    },
+    }
     // More products...
   ]
 

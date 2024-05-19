@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Single_product(Product_Data) {
+export default function Single_product({Product_Data}) {
   return (
     <>
 
