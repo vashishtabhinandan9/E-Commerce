@@ -50,7 +50,7 @@ export default function Filter_Sort_Menu() {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? "  text-white" : "text-gray-900"
+                      active ? "bg-black text-white" : "text-gray-900"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
                     Popularity
@@ -61,7 +61,7 @@ export default function Filter_Sort_Menu() {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? " text-white" : "text-gray-900"
+                      active ? "bg-black text-white" : "text-gray-900"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
                     What's New
@@ -74,7 +74,7 @@ export default function Filter_Sort_Menu() {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? "bg-violet-500 text-white" : "text-gray-900"
+                      active ? "bg-black text-white" : "text-gray-900"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
                     Price: Low To High
@@ -85,7 +85,7 @@ export default function Filter_Sort_Menu() {
                 {({ active }) => (
                   <button
                     className={`${
-                      active ? "bg-violet-500 text-white" : "text-gray-900"
+                      active ? "bg-black text-white" : "text-gray-900"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
                    Price: High To Low

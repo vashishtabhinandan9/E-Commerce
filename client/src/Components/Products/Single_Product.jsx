@@ -4,9 +4,9 @@ import React from 'react'
 export default function Single_Product({Product_Data}) {
   return (
     <>
-
-      <a key={Product_Data.id} href={Product_Data.href} className="group">
-        <div className="border-2 border-black">
+   
+    <a key={Product_Data.id} href={Product_Data.href} className="group ">
+        <div className="border-2 border-black ">
           <img
             src={Product_Data.imageSrc}
             alt={Product_Data.imageAlt}
@@ -18,6 +18,8 @@ export default function Single_Product({Product_Data}) {
           {Product_Data.price}
         </p>
       </a>
+  
+    
     </>
   );
 }

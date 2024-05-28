@@ -44,10 +44,10 @@ export default function Collection() {
     <>
       <Filter_Sort_Menu />
       <div className="bg-white">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <div id="Products" className="mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-4">
         {Products.map((item, index) => {
           return (
-            <div key={index}>
+            <div key={index} className='w-full'>
               <Single_Product Product_Data={item} />
             </div>
           );
