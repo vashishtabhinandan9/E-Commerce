@@ -68,7 +68,7 @@ export default function Product_Info() {
         nextArrow:<NextArrow/>,
         prevArrow: <PrevArrow />,
         autoplay: true,
-        autoplaySpeed: 500,
+        autoplaySpeed: 2000,
         pauseOnHover: true,
         responsive: [
           {
