@@ -1,11 +1,11 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom';
 
 export default function Single_Product({Product_Data}) {
   return (
     <>
    
-    <a key={Product_Data.id} href={Product_Data.href} className="group ">
+    <Link key={Product_Data.id} to={Product_Data.href} className="group ">
         <div className="border-2 border-black ">
           <img
             src={Product_Data.imageSrc}
@@ -17,7 +17,7 @@ export default function Single_Product({Product_Data}) {
         <p className="my-4 text-lg font-medium text-gray-900">
           {Product_Data.price}
         </p>
-      </a>
+      </Link>
   
     
     </>
