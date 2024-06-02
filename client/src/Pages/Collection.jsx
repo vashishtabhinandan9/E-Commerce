@@ -8,7 +8,7 @@ export default function Collection() {
     {
       id: 1,
       name: 'Earthen Bottle',
-      href: '#',
+      href: '/Category/Electronics/Product/123',
       price: '$48',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
       imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
@@ -16,7 +16,7 @@ export default function Collection() {
     {
       id: 2,
       name: 'Nomad Tumbler',
-      href: '#',
+      href: '/Category/Electronics/Product/12',
       price: '$35',
       imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg',
       imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',

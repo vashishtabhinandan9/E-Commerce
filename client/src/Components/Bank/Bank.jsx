@@ -87,7 +87,7 @@ const ArrWaysToEarn = [
                         </div>
                         
                       </div>
-                      <hr className="w-11/12 text-center bg-black"></hr>
+                      <hr className="w-11/12 text-center  bg-black"></hr>
                       </div>
                     ))}
                   </div>

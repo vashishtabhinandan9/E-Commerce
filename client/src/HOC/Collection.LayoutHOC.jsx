@@ -8,7 +8,7 @@ export default function CollectionLayoutHOC(props) {
     <>
     <Collection_Layout >
     <div className='border-y-2 border-gray-400 '>
-    {<h1 className='text-xl font-bold'>{props.CategoryName.toUpperCase()}</h1>}
+    {<h1 className='text-xl font-bold ml-2'>{props.CategoryName.toUpperCase()}</h1>}
     </div>
     
       <CategoryCaousal/>
