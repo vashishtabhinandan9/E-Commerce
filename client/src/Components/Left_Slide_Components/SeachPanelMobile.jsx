@@ -39,6 +39,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
               className="w-full  py-2 pl-3 pr-10 text-lg leading-5 text-gray-900 bg-white focus:outline-none"
               displayValue={(person) => person.name}
               aria-labelledBy="lblCategories"
+              aria-label='lblCategories'
               onChange={(event) => setQuery(event.target.value)}
             />
             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">

@@ -10,7 +10,7 @@ export function Left_Slide_Menu({Component,Icon,Heading}) {
 return (
   <>
     <div id="Hamburger_Menu" className=" mx-auto w-8 h-8   ">
-      <button
+      <button id="IconForLeftMenu"
         onClick={() => {
           setIsopen(true);
         }}

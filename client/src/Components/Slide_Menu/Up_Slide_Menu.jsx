@@ -38,7 +38,7 @@ export function Up_Slide_Menu({Icon, Name}) {
   return (
     <>
       <button
-        id={Name}
+        id="UpSlideMenuIcon"
         onClick={() => {
           setIsopen(true);
         }}

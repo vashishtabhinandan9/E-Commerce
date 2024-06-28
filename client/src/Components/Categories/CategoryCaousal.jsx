@@ -29,11 +29,11 @@ import { Link} from "react-router-dom";
 };
 export default function CategoryCaousal() {
   var Categories=[
-    {CategoryName:'something',
+    {CategoryName:'Electronics',
       CategoryLink:"Electronics",
       CategoryImg:Electronics
   },
-  {CategoryName:'something',
+  {CategoryName:'Food',
   CategoryLink:"Food",
   CategoryImg:Foodlig
   },
@@ -45,11 +45,11 @@ export default function CategoryCaousal() {
   CategoryLink:"",
   CategoryImg:Foodlig
   },
-  {CategoryName:'something',
+  {CategoryName:'Grocery',
   CategoryLink:"Grocery",
   CategoryImg:GroceryImg
   },
-  {CategoryName:'something',
+  {CategoryName:'Food2',
   CategoryLink:"Food",
   CategoryImg:Foodlig
   },

@@ -12,25 +12,25 @@ import { Up_Slide_Menu } from "../Slide_Menu/Up_Slide_Menu";
 export const MobileTabs = () => {
     const [allTypes, setAllTypes] = useState([
       {
-        id: "shop",
-        icon: <SlGrid />,
-        name: "SHOP",
-      },
-      {
         id: "account",
         icon: <Right_Slide_Menu Component={<SignIn/>} Icon={ <FiUser className="w-5 h-5 mx-auto"/>} Heading="  "/>,
         name: "ACCOUNT",
-      },
-      {
-        id: `wishlist`,
-        icon: <FaRegHeart  />,
-        name: "WISHLIST",
       },
       {
         id: `rewards`,
         icon:  <Up_Slide_Menu Icon={ <PiMedalFill className="w-5 h-5 mx-auto"/>} Name="Bank_Menu"/>,
         name: "REWARDS",
       },
+      {
+        id: "shop",
+        icon: <SlGrid />,
+        name: "SHOP",
+      },
+      {
+        id: `wishlist`,
+        icon: <FaRegHeart  />,
+        name: "WISHLIST",
+      },      
       {
         id: `help`,
         icon:  <Up_Slide_Menu Icon={ <RiQuestionnaireLine  className="w-5 h-5 mx-auto"/>} Name="Help_Menu"/> ,
