@@ -31,15 +31,18 @@ export default function CategoryCaousal() {
   var Categories=[
     {CategoryName:'Electronics',
       CategoryLink:"Electronics",
-      CategoryImg:Electronics
+      CategoryImg:Electronics,
+      alt:"Electronics Store"
   },
   {CategoryName:'Food',
   CategoryLink:"Food",
-  CategoryImg:Foodlig
+  CategoryImg:Foodlig,
+   alt:"Food Store"
   },
   {CategoryName:'something',
   CategoryLink:"Food",
-  CategoryImg:Foodlig
+  CategoryImg:Foodlig,
+  alt:"Food2 Store"
   },
   {CategoryName:'something',
   CategoryLink:"",
@@ -47,11 +50,13 @@ export default function CategoryCaousal() {
   },
   {CategoryName:'Grocery',
   CategoryLink:"Grocery",
-  CategoryImg:GroceryImg
+  CategoryImg:GroceryImg,
+  alt:"Grocery Store"
   },
-  {CategoryName:'Food2',
+  {CategoryName:'Food3',
   CategoryLink:"Food",
-  CategoryImg:Foodlig
+  CategoryImg:Foodlig,
+  alt:"Food3 Store"
   },
   ]
 
@@ -101,7 +106,7 @@ export default function CategoryCaousal() {
           <div key={index} id="CarousalItemContainer" className=" ">
             <Link to={`/Category/${item.CategoryLink}`}>
             <div className="w-20 h-20  mx-auto">
-            <img src={item.CategoryImg} alt= {item.CategoryName} className="w-full h-full mx-auto"></img> 
+            <img src={item.CategoryImg} alt= {item.alt} className="w-full h-full mx-auto"></img> 
             </div>
            <div className="text-center text-slate-700 text-xl">
             {item.CategoryName}
