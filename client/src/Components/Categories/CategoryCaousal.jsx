@@ -98,17 +98,15 @@ export default function CategoryCaousal() {
       <Slider {...settings} className="">
       { Categories.map((item,index)=>{
         return(
-          <div key={index} id="contain" className=" ">
+          <div key={index} id="CarousalItemContainer" className=" ">
             <Link to={`/Category/${item.CategoryLink}`}>
             <div className="w-20 h-20  mx-auto">
-            <img src={item.CategoryImg} className="object-fill   mx-auto"></img> 
+            <img src={item.CategoryImg} alt= {item.CategoryName} className="w-full h-full mx-auto"></img> 
             </div>
            <div className="text-center text-slate-700 text-xl">
             {item.CategoryName}
            </div>
             </Link>
-         
-        
         
           </div>
         )

@@ -146,8 +146,11 @@ function Footer_HomePage_lg() {
 export default function Footer_HomePage() {
   return (
     <>
-    <div className='lg:hidden md:flex'><Footer_HomePage_sm/></div>
+    <div className=''>
+    <div className='lg:hidden md:flex '><Footer_HomePage_sm/></div>
     <div className='hidden lg:flex'> <Footer_HomePage_lg/></div>
+    </div>
+    
     </>
   );
 }

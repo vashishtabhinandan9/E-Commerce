@@ -10,23 +10,7 @@ import HomeLayoutHOC from './HOC/Home.LayoutHOC.jsx';
 import Home from './Pages/Home.jsx';
 import "./index.css";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: () => redirect("/Home"),
-    errorElement: <ErrorPage/>,
-    children: [
-      {
-        path: "/Category/Electronics",
-        element: <CollectionLayoutHOC Component={<Collection/>}/>,
-      },
-      {
-        path: "/Home",
-        element: <HomeLayoutHOC Component={<Home/>}/>,
-      },
-    ],
-  },
-]);
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>

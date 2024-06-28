@@ -18,7 +18,7 @@ export const MobileTabs = () => {
       },
       {
         id: "account",
-        icon: <Right_Slide_Menu Component={<SignIn/>} Icon={ <FiUser className="w-5 h-5 mx-auto"/>} Heading=""/>,
+        icon: <Right_Slide_Menu Component={<SignIn/>} Icon={ <FiUser className="w-5 h-5 mx-auto"/>} Heading="  "/>,
         name: "ACCOUNT",
       },
       {

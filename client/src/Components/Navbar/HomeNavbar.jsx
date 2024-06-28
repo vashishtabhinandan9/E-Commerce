@@ -25,7 +25,8 @@ const Home_Sm_Nav = ()=>{
           >
             <img
               src={BlackLogo}
-              className="object-cover w-11/12 stroke-2 mx-auto h-full"
+              alt="SamneWali"
+              className="object-cover w-11/12 h-full stroke-2 mx-auto "
             ></img>
           </div>
 
@@ -43,7 +44,7 @@ const Home_Lg_Nav = ()=>{
         <div className="hidden lg:flex h-16 border-b-4 border-gray-200" >
 
         <div id="SVGLogo" className="w-40 h-full flex items-center mx-auto   border-2 border-green-400" >
-            <img src={BlackLogo} className="object-fill w-full h-full  mx-auto "></img> 
+            <img src={BlackLogo} alt="SamneWali" className="object-fill w-full h-full  mx-auto "></img> 
         </div>
 
         <div id="CenterNavElements" className=" w-7/12 h-12 m-auto bg-gray-100 shadow-md  flex items-center gap-3  border border-gray-200 rounded">

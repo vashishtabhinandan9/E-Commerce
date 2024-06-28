@@ -43,6 +43,7 @@ export function Up_Slide_Menu({Icon, Name}) {
           setIsopen(true);
         }}
         className="w-full h-full"
+        aria-label={Name}
       >
         {Icon}
       </button>
@@ -71,9 +72,11 @@ export function Up_Slide_Menu({Icon, Name}) {
         >
           <button
             className="w-full h-full"
+            aria-label="Close"
             onClick={() => {
               setIsopen(false);
             }}
+
           >
             <RxCross2 className="w-full h-full " />
           </button>

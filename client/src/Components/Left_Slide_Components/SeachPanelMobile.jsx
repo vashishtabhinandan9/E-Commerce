@@ -38,6 +38,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
             <Combobox.Input
               className="w-full  py-2 pl-3 pr-10 text-lg leading-5 text-gray-900 bg-white focus:outline-none"
               displayValue={(person) => person.name}
+              aria-labelledBy="lblCategories"
               onChange={(event) => setQuery(event.target.value)}
             />
             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -118,7 +119,7 @@ export default function SeachPanelMobile() {
               className="w-full focus:outline-none placeholder:font-sans placeholder:text-zinc-700 text-xl "
             />
           </div>
-          <button className="w-12 h-full rounded-lg bg-black text-white  ">
+          <button className="w-12 h-full rounded-lg bg-black text-white" aria-label='Search'>
             <IoIosSearch className="rotate-90 w-full stroke-bold text-3xl" />
           </button>
         </div>

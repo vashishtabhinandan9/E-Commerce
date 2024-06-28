@@ -114,7 +114,7 @@ export function SignIn(){
 
           <button type="submit" className="text-white font-serif bg-gray-950 hover:bg-neutral-900 outline-none font-medium rounded-lg text-base w-2/5  py-2.5 my-4  text-center ">REGISTER</button>
 
-          <p onClick={()=>setAlreadyUser(true)} className="underline w-max  text-teal-500 my-4 antialiased hover:cursor-pointer">Already have an account? Login here</p>
+          <p onClick={()=>setAlreadyUser(true)} className="underline w-max  text-sky-400 my-4 antialiased hover:cursor-pointer">Already have an account? Login here</p>
 
         </form> }
       </>

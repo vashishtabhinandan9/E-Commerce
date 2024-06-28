@@ -123,6 +123,7 @@ export default function Product_Info() {
                     <div className="w-full h-full  mx-auto">
                       <img
                         src={item.CategoryImg}
+                        alt={item.CategoryName}
                         className="h-full w-full  border-2 border-black "
                       ></img>
                     </div>
@@ -173,7 +174,7 @@ export default function Product_Info() {
               </form>
             </div>
             <div className="mx-auto my-2 w-10/12  ">
-              <button className=" w-full h-full p-2 rounded-md bg-black text-white text-lg font-light text-center flex justify-center items-center gap-2">
+              <button className=" w-full h-full p-2 rounded-md bg-black text-white text-lg font-light text-center flex justify-center items-center gap-2" aria-label='Add To Cart'>
                 <FaShoppingCart className="mx-4 text-xl" /> ADD TO CART
               </button>
             </div>

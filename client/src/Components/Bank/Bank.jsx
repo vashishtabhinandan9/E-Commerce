@@ -52,7 +52,7 @@ const ArrWaysToEarn = [
             >
               <FaChevronRight
                 className={`text-gray-500  float-bottom h-4 w-4 `}
-                aria-hidden="true"
+               aria-label="Expand"
               />
             </Popover.Button>
             <Transition

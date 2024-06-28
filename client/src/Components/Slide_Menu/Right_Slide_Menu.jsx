@@ -16,7 +16,7 @@ export function Right_Slide_Menu({Component,Icon, Heading}) {
   return (
     <>
      
-        <button id={Heading} onClick={()=>{setIsopen(true)}} className="w-full h-full">
+        <button id={Heading} onClick={()=>{setIsopen(true)}} className="w-full h-full" aria-label={Heading}>
           {Icon}
         </button>
   
@@ -33,7 +33,7 @@ export function Right_Slide_Menu({Component,Icon, Heading}) {
       >
         <div>
           <div id="TopSection_Menu" className="w-full h-12 border-gray-200  border-b flex items-center">
-            <button className="w-6 h-6 m-2" onClick={() => setIsopen(false)}>
+            <button className="w-6 h-6 m-2"  aria-label="Close" onClick={() => setIsopen(false)}>
               <RxCross2 className="w-full h-full  text-gray-800 hover:{transform duaration-300 rotate-45}" />
             </button>
             <div className="mx-4">

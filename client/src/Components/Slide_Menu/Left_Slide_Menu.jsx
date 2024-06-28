@@ -39,7 +39,7 @@ return (
             </h3>
           </div>
         
-          <button className="w-6 h-6 mx-2 absolute right-4 " onClick={() => setIsopen(false)}>
+          <button className="w-6 h-6 mx-2 absolute right-4 "  aria-label="Close" onClick={() => setIsopen(false)}>
             <RxCross2 className="w-full h-full  text-gray-800 " />
           </button>
         </div>

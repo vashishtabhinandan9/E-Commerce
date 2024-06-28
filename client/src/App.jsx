@@ -18,15 +18,23 @@ function App() {
 
   return (
     <>
+    <div  className='flex flex-col h-full'>
     <Nav/>
+    <div className='flex-1'>
     <Routes>
       <Route path='/' exact element={<HomeLayoutHOC Component={<Home/>}/>}/>
       <Route path="/Category/Electronics" exact element={<CollectionLayoutHOC Component={<Collection/>} CategoryName={"Electronics"} />} />
       <Route path="/Category/Electronics/Product/:id" exact element={<ProductLayoutHOC Component={<Product/>}/>} />
       <Route path="*" element={<ErrorPage/>} />
     </Routes>
-    <Footer_HomePage/>
-    <MobileTabs/>
+    </div>
+   <div>
+   <Footer_HomePage/>
+   <MobileTabs/>
+   </div>
+  
+    </div>
+    
     
     </>
   )
