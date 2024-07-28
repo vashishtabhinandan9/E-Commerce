@@ -6,12 +6,7 @@ import { SignIn } from "../Auth/Auth";
 export function Right_Slide_Menu({Component,Icon, Heading}) {
   const [Isopen, setIsopen] = useState(false);
   
-   const Handle_SideMenu=()=> {
-    //EventTarget.id === "Hamburger_Menu" ? setDir(false) : setDir(true);
-    setIsopen(true);
-    // Update the condition to check the value of the Name prop
-    
-  }
+  
 
   return (
     <>
@@ -40,10 +35,8 @@ export function Right_Slide_Menu({Component,Icon, Heading}) {
             <h3 className="font-medium font-sans text-lg antialiased text-gray-700"> {Heading} </h3>{/**heading like loginsingup cart */}
             </div>
           </div>
-          
           <div>
             {Component}
-          
           </div>
         </div>
       </aside>

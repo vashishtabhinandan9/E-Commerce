@@ -8,11 +8,11 @@ import { FaChevronDown } from "react-icons/fa6";
 import { IoStar } from "react-icons/io5";
 import { IoStarOutline } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
-
+import { useRecoilState } from 'recoil';
 import Foodlig from "../../Assets/FoodIcon-removebg-preview.png"
 import GroceryImg from "../../Assets/GroceriesIcon.png"
 import Electronics from "../../Assets/ElectronicsIconjpeg.jpeg"
-
+import { cartState } from '../../Redux/Cart/Cart_Atom';
 const NextArrow = (props) => {
     return (
       <div
@@ -22,7 +22,7 @@ const NextArrow = (props) => {
       />
     );
   };
-   const PrevArrow = (props) => {
+const PrevArrow = (props) => {
     return (
       <div
         className={props.className}
@@ -32,6 +32,11 @@ const NextArrow = (props) => {
     );
   };
 export default function Product_Info() {
+  const [Cart, setCartstate] = useRecoilState(cartState);
+
+  const addToCartHandler = () => {
+    setCartstate((PrevState)=>{[...PrevState,{item}]});
+  };
     var Categories=[
         {CategoryName:'something',
           CategoryLink:"Electronics",
@@ -174,7 +179,7 @@ export default function Product_Info() {
               </form>
             </div>
             <div className="mx-auto my-2 w-10/12  ">
-              <button className=" w-full h-full p-2 rounded-md bg-black text-white text-lg font-light text-center flex justify-center items-center gap-2" aria-label='Add To Cart'>
+              <button onClick={addToCartHandler} className=" w-full h-full p-2 rounded-md bg-black text-white text-lg font-light text-center flex justify-center items-center gap-2" aria-label='Add To Cart'>
                 <FaShoppingCart className="mx-4 text-xl" /> ADD TO CART
               </button>
             </div>

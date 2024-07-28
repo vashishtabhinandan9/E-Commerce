@@ -12,7 +12,7 @@ export default function Filter_Sort_Menu() {
         <span id="Filter_Icon" className="flex items-center text-xl  text-gray-800">
             <Left_Slide_Menu
               Component={<FilterPanel/>}
-              Icon={<div className="flex items-center"><FaFilter className="mx-4 font-bold" /> FILTER</div>}
+              Icon={<div className="flex items-center"><FaFilter className="mx-4 font-bold" /><h1>FILTER</h1> </div>}
               Heading="FILTER"
             />
         </span>

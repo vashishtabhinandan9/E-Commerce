@@ -9,12 +9,14 @@ import Collection from './Pages/Collection.jsx';
 import HomeLayoutHOC from './HOC/Home.LayoutHOC.jsx';
 import Home from './Pages/Home.jsx';
 import "./index.css";
+import { RecoilRoot } from 'recoil';
 
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
-      <App/>
+      <RecoilRoot>
+        <App />
+      </RecoilRoot>
     </Router>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
