@@ -42,13 +42,13 @@ const NewNav =()=>{
           </div>
         <div id="NavIcon_Group" className="flex gap-4 w-max">
         <div id="User_Icon"  className=" w-8 h-8 mx-auto hidden lg:flex">
-            <Right_Slide_Menu Component={<SignIn/>} Icon={ <FiUser className="w-8 h-8"/>} Heading=""/>
+            <Right_Slide_Menu Component={<SignIn/>} Icon={ <FiUser className="w-8 h-8"/>} Heading="" Name="Account2"/>
         </div>
         <div  className=" w-8 h-8 mx-auto hidden lg:flex">
               <FaRegHeart className="w-full h-full"/>
         </div>
         <div className="Cart_Icon w-8 h-8 mr-16">
-          <Right_Slide_Menu Component={<FashionCart/>} Icon={ <FaShoppingCart className="w-full h-full"/>} Heading="SHOPPING CART"/>
+          <Right_Slide_Menu Component={<FashionCart/>} Icon={ <FaShoppingCart className="w-full h-full"/>} Heading="SHOPPING CART" Name="Cart"/>
         </div>
         </div>
 
@@ -79,7 +79,7 @@ const Home_Sm_Nav = ()=>{
           </div>
 
           <div className="Cart_Icon w-8 h-8 mr-16">
-          <Right_Slide_Menu Component={<FashionCart/>} Icon={ <FaShoppingCart className="w-full h-full"/>} Heading="SHOPPING CART"/>
+          <Right_Slide_Menu Component={<FashionCart/>} Icon={ <FaShoppingCart className="w-full h-full"/>} Heading="SHOPPING CART" Name="Cart"/>
           </div>
         </div>
       </>
@@ -115,13 +115,13 @@ const Home_Lg_Nav = ()=>{
           
           <div id="Icons" className="gap-2 flex items-baseline m-auto">
             <div id="User_Icon"  className=" w-8 h-8 mx-auto">
-            <Right_Slide_Menu Component={<SignIn/>} Icon={ <FiUser className="w-8 h-8"/>} Heading=""/>
+            <Right_Slide_Menu Component={<SignIn/>} Icon={ <FiUser className="w-8 h-8"/>} Heading="" Name="Account3"/>
             </div>
             <div  className=" w-8 h-8 mx-auto">
               <FaRegHeart className="w-full h-full"/>
             </div>
             <div id="Cart_Icon" className=" w-8 h-8 mx-auto">
-            <Right_Slide_Menu Component={<FashionCart/>} Icon={ <FaShoppingCart className="w-8 h-8"/>} Heading="SHOPPING CART"/>
+            <Right_Slide_Menu Component={<FashionCart/>} Icon={ <FaShoppingCart className="w-8 h-8"/>} Heading="SHOPPING CART" Name="Cart2"/>
            </div>
           </div>
            

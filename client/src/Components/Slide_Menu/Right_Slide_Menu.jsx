@@ -3,7 +3,7 @@ import { RxCross2 } from "react-icons/rx";
 import { Dialog, Transition } from '@headlessui/react'
 import { SignIn } from "../Auth/Auth";
 
-export function Right_Slide_Menu({Component,Icon, Heading}) {
+export function Right_Slide_Menu({Component,Icon, Heading,Name=""}) {
   const [Isopen, setIsopen] = useState(false);
   
   
@@ -11,7 +11,7 @@ export function Right_Slide_Menu({Component,Icon, Heading}) {
   return (
     <>
      
-        <button id={Heading} onClick={()=>{setIsopen(true)}} className="w-full h-full" aria-label={Heading}>
+        <button id={Heading} onClick={()=>{setIsopen(true)}} className="w-full h-full"  aria-label={Name}>
           {Icon}
         </button>
   

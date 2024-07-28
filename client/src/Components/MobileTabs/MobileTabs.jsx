@@ -13,8 +13,13 @@ export const MobileTabs = () => {
     const [allTypes, setAllTypes] = useState([
       {
         id: "account",
-        icon: <Right_Slide_Menu Component={<SignIn/>} Icon={ <FiUser className="w-5 h-5 mx-auto"/>} Heading="  "/>,
+        icon: <Right_Slide_Menu Component={<SignIn/>} Icon={ <FiUser className="w-5 h-5 mx-auto"/>} Heading=" " Name="Account"/>,
         name: "ACCOUNT",
+      },
+      {
+        id: `help`,
+        icon:  <Up_Slide_Menu Icon={ <RiQuestionnaireLine  className="w-5 h-5 mx-auto"/>} Name="Help_Menu"/> ,
+        name: "HELP",
       },
       {
         id: `rewards`,
@@ -31,11 +36,7 @@ export const MobileTabs = () => {
         icon: <FaRegHeart  />,
         name: "WISHLIST",
       },      
-      {
-        id: `help`,
-        icon:  <Up_Slide_Menu Icon={ <RiQuestionnaireLine  className="w-5 h-5 mx-auto"/>} Name="Help_Menu"/> ,
-        name: "HELP",
-      }
+      
     ]);
    
     return (

@@ -102,7 +102,7 @@ export default function Product_Info() {
           },
         ]
       };
-      const Sizes= [
+    const Sizes= [
         { name: 'XXS', inStock: false },
         { name: 'XS', inStock: true },
         { name: 'S', inStock: true },

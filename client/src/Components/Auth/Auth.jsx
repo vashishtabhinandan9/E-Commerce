@@ -54,6 +54,7 @@ export function SignIn(){
             <input
               required
               id="FirstName"
+              aria-label="txtFirstName"
               type="text"
               className="w-11/12 h-8 peer  p-2.5 rounded-sm outline-none border  border-gray-300 focus:border-black text-sm "
             ></input>
@@ -69,6 +70,7 @@ export function SignIn(){
             <input
               required
               id="LastName"
+               aria-label="txtLastName"
               type="text"
               className="w-11/12 h-8 peer  p-2.5 rounded-sm outline-none border  border-gray-300 focus:border-black text-base "
             ></input>
