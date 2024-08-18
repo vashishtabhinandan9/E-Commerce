@@ -3,8 +3,15 @@ import bcrypt from 'bcryptjs'
 import { SignInSchema, SignUpSchema } from "../ZodSchema/AuthSchema.js";
 import { PrismaClient } from "@prisma/client";
 import { generateJwtToken } from "../Helper/AuthHelper.js";
+import passport from 'passport';
 const prisma = new PrismaClient();
-
+/*
+Route     /signup
+Des       Register new user
+Params    none
+Access    Public
+Method    POST  
+*/
 const SignUp = async (req, res) => {
 
     try {
@@ -45,7 +52,6 @@ const SignUp = async (req, res) => {
                         name: newUser.FirstName,
                         email: newUser.Email,
                     }
-
                 });
             }
             else {
@@ -62,7 +68,13 @@ const SignUp = async (req, res) => {
         });
     }
 }
-
+/*
+Route     /signin
+Des       Signin with email and password
+Params    none
+Access    Public
+Method    POST  
+*/
 const SignIn = async (req, res) => {
     try {
         const { Email, Password } = req.body;
@@ -104,5 +116,39 @@ const SignIn = async (req, res) => {
         });
     }
 }
-export { SignUp, SignIn };
+/*
+Route     /google
+Des       Google Signin
+Params    none
+Access    Public
+Method    GET  
+*/
+const GoogleScope = passport.authenticate('google', { scope: ['profile', 'email'] })
+
+/*
+Route     /google/callback
+Des       Google Signin Callback
+Params    none
+Access    Public
+Method    GET  
+*/
+const GoogleCallback = passport.authenticate("google", { failureRedirect: "/" }, (req, res) => {
+    //console.log(res);
+    res.redirect('http://localhost:5173/');
+});
+
+// app.get('/profile', (req, res) => {
+//     if (!req.isAuthenticated()) {
+//       return res.redirect('/auth/google');
+//     }
+//     res.send(`Hello, ${req.user.name}`);
+//   });
+
+//   app.get('/logout', (req, res) => {
+//     req.logout();
+//     res.redirect('/');
+//   });
+
+
+export { SignUp, SignIn, GoogleScope, GoogleCallback };
 
