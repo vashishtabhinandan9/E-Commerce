@@ -116,39 +116,4 @@ const SignIn = async (req, res) => {
         });
     }
 }
-/*
-Route     /google
-Des       Google Signin
-Params    none
-Access    Public
-Method    GET  
-*/
-const GoogleScope = passport.authenticate('google', { scope: ['profile', 'email'] })
-
-/*
-Route     /google/callback
-Des       Google Signin Callback
-Params    none
-Access    Public
-Method    GET  
-*/
-const GoogleCallback = passport.authenticate("google", { failureRedirect: "/" }, (req, res) => {
-    //console.log(res);
-    res.redirect('http://localhost:5173/');
-});
-
-// app.get('/profile', (req, res) => {
-//     if (!req.isAuthenticated()) {
-//       return res.redirect('/auth/google');
-//     }
-//     res.send(`Hello, ${req.user.name}`);
-//   });
-
-//   app.get('/logout', (req, res) => {
-//     req.logout();
-//     res.redirect('/');
-//   });
-
-
-export { SignUp, SignIn, GoogleScope, GoogleCallback };
 

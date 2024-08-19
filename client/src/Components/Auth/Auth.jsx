@@ -1,26 +1,55 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { FcGoogle } from "react-icons/fc";
-
+import { useRecoilState, useRecoilValue } from "recoil";
+import { userState } from "../../Redux/User/User_Atom";
 export function SignIn() {
   const [AlreadyUser, setAlreadyUser] = useState(false);
-
-  const handleSubmit = async (e) => {
+  const [User, setUserState] = useRecoilState(userState);
+  const SignInEmailRef = useRef();
+  const SignInPasswordRef = useRef();
+  const SignUpEmailRef = useRef();
+  const SignUpPasswordRef = useRef();
+  const FirstNameRef = useRef();
+  const LastNameRef = useRef();
+  const PhoneRef = useRef();
+  const handleSignIn = async (e) => {
     e.preventDefault();
-    dispatch({ type: "LOGIN_START" });
     try {
       const res = await axiosInstance.post("signin", {
-        email: userRef.current.value,
-        password: passwordRef.current.value,
+        Email: SignInEmailRef.current.value,
+        Password: SignInPasswordRef.current.value,
       });
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+      const { token } = res.data.token;
+      // Save token to local storage
+      localStorage.setItem("jwtToken", token);
+      setUserState(res.data.User);
+    } catch (error) {}
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axiosInstance.post("signup", {
+        FirstName: FirstNameRef.current.value,
+        LastName: LastNameRef.current.value,
+        Email: SignUpEmailRef.current.value,
+        Password: SignUpPasswordRef.current.value,
+        Phone: PhoneRef.current.value,
+      });
+      if (res.success) {
+        //prrint a message that say now do the login
+
+        setAlreadyUser(true); //redirect to the login screen
+      }
     } catch (err) {
       console.log(err);
-      dispatch({ type: "LOGIN_FAILURE" });
     }
   };
+
   function GoogleAuth() {
     window.location.href = "http://localhost:3000/auth/google";
   }
+
   return (
     <>
       <h1 className="absolute top-2 left-10 font-medium font-sans text-lg antialiased text-gray-700">
@@ -31,11 +60,12 @@ export function SignIn() {
         <>
           <form
             className="  mx-auto  py-2 px-8 w-full  flex flex-col "
-            onSubmit={handleSubmit}
+            onSubmit={handleSignIn}
           >
             <div className="flex flex-col relative my-4">
               <input
                 required
+                ref={SignInEmailRef}
                 id="Email"
                 type="text"
                 className="w-11/12 h-8 peer  p-2.5 rounded-sm outline-none border  border-gray-300 focus:border-black text-sm "
@@ -52,6 +82,7 @@ export function SignIn() {
             <div className="flex flex-col relative my-4 ">
               <input
                 required
+                ref={SignInPasswordRef}
                 id="Password"
                 type="password"
                 className="w-11/12 h-8 peer  p-2.5 rounded-sm outline-none border  border-gray-300 focus:border-black text-base "
@@ -83,7 +114,10 @@ export function SignIn() {
               New customer? Create your account
             </p>
           </form>
-          <button className="py-2 justify-center rounded-lg flex items-center gap-2 w-full border border-gray-400 bg-white text-gray-700 hover:bg-gray-100">
+          <button
+            onClick={GoogleAuth}
+            className="flex p-2 items-center gap-4 mx-auto  rounded-lg  w-10/11 border border-gray-400 bg-white text-black text-lg hover:bg-gray-100 hover:border-black"
+          >
             Signin With Google <FcGoogle />
           </button>
         </>
@@ -91,10 +125,14 @@ export function SignIn() {
 
       {!AlreadyUser && (
         <>
-          <form className="  mx-auto  py-2 px-8 w-full  flex flex-col ">
+          <form
+            className="  mx-auto  py-2 px-8 w-full  flex flex-col "
+            onSubmit={handleSignUp}
+          >
             <div className="flex flex-col relative my-4">
               <input
                 required
+                ref={FirstNameRef}
                 id="FirstName"
                 aria-label="txtFirstName"
                 type="text"
@@ -112,6 +150,7 @@ export function SignIn() {
             <div className="flex flex-col relative my-4 ">
               <input
                 required
+                ref={LastNameRef}
                 id="LastName"
                 aria-label="txtLastName"
                 type="text"
@@ -129,6 +168,7 @@ export function SignIn() {
             <div className="flex flex-col relative my-4">
               <input
                 required
+                ref={SignUpEmailRef}
                 id="Email"
                 type="text"
                 className="w-11/12 h-8 peer  p-2.5 rounded-sm outline-none border  border-gray-300 focus:border-black text-sm "
@@ -145,6 +185,7 @@ export function SignIn() {
             <div className="flex flex-col relative my-4 ">
               <input
                 required
+                ref={SignUpPasswordRef}
                 id="Password"
                 type="password"
                 className="w-11/12 h-8 peer  p-2.5 rounded-sm outline-none border  border-gray-300 focus:border-black text-base "
@@ -154,6 +195,23 @@ export function SignIn() {
                 className="px-2 font-light absolute text-gray-500 h-6 text-sm tansition-transform ease-out duration-300 peer-focus:-translate-y-4  peer-focus:scale-75 peer-valid:-translate-y-4  peer-valid:scale-75 peer-focus:bg-white peer-focus:border-x peer-focus:border-black   peer-valid:bg-white peer-valid:border-x peer-valid:border-black"
               >
                 Password{" "}
+                <span className="text-red-500 text-lg font-bold"> * </span>
+              </label>
+            </div>
+
+            <div className="flex flex-col relative my-4 ">
+              <input
+                required
+                ref={PhoneRef}
+                type="number"
+                id="Phoneno"
+                className="w-11/12 h-8 peer  p-2.5 rounded-sm outline-none border  border-gray-300 focus:border-black text-base "
+              ></input>
+              <label
+                for="Phoneno"
+                className="px-2 font-light absolute text-gray-500 h-6 text-sm tansition-transform ease-out duration-300 peer-focus:-translate-y-4  peer-focus:scale-75 peer-valid:-translate-y-4  peer-valid:scale-75 peer-focus:bg-white peer-focus:border-x peer-focus:border-black   peer-valid:bg-white peer-valid:border-x peer-valid:border-black"
+              >
+                Phone{" "}
                 <span className="text-red-500 text-lg font-bold"> * </span>
               </label>
             </div>
@@ -181,12 +239,14 @@ export function SignIn() {
 
           <button
             onClick={GoogleAuth}
-            className=" flex p-2 items-center gap-4 mx-auto  rounded-lg  w-10/11 border border-gray-400 bg-white text-black text-lg hover:bg-gray-100 hover:border-black"
+            className="flex p-2 items-center gap-4 mx-auto  rounded-lg  w-10/11 border border-gray-400 bg-white text-black text-lg hover:bg-gray-100 hover:border-black"
           >
             Signin With Google <FcGoogle />
           </button>
         </>
       )}
+
+      {User && <></>}
     </>
   );
 }
