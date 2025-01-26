@@ -1,6 +1,6 @@
 import { FaFilter } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa6";
-import { Popover } from '@headlessui/react'
+import { Popover } from "@headlessui/react";
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Left_Slide_Menu } from "../Slide_Menu/Left_Slide_Menu";
@@ -9,12 +9,20 @@ export default function Filter_Sort_Menu() {
   return (
     <>
       <div className="flex items-center justify-between mt-2">
-        <span id="Filter_Icon" className="flex items-center text-xl  text-gray-800">
-            <Left_Slide_Menu
-              Component={<FilterPanel/>}
-              Icon={<div className="flex items-center"><FaFilter className="mx-4 font-bold" /><h1>FILTER</h1> </div>}
-              Heading="FILTER"
-            />
+        <span
+          id="Filter_Icon"
+          className="flex items-center text-xl  text-gray-800"
+        >
+          <Left_Slide_Menu
+            Component={<FilterPanel />}
+            Icon={
+              <div className="flex items-center">
+                <FaFilter className="mx-4 font-bold" />
+                <h1>FILTER</h1>{" "}
+              </div>
+            }
+            Heading="FILTER"
+          />
         </span>
         <SortDDL />
       </div>
@@ -22,8 +30,7 @@ export default function Filter_Sort_Menu() {
   );
 }
 
-
- function SortDDL() {
+function SortDDL() {
   return (
     <div className="w-56 text-right mx-4">
       <Menu as="div" className=" inline-block text-left">
@@ -88,19 +95,14 @@ export default function Filter_Sort_Menu() {
                       active ? "bg-black text-white" : "text-gray-900"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
-                   Price: High To Low
+                    Price: High To Low
                   </button>
                 )}
               </Menu.Item>
             </div>
-           
           </Menu.Items>
         </Transition>
       </Menu>
     </div>
   );
 }
-
-
-
-    

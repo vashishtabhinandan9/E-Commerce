@@ -1,22 +1,14 @@
 import express from "express"
 import dotenv from "dotenv"
-import session from 'express-session';
-import passport from 'passport';
-import './Helper/passport-setup.js'
+import cors from "cors";
 import { router } from "./Routes/RouterMain.js";
 const app = express();
 app.use(express.json());
 
 dotenv.config();
-app.use(session({
-    secret: 'your-session-secret',
-    resave: false,
-    saveUninitialized: false
+app.use(cors({
+    origin: "*", // Allow requests from any origin
 }));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use('/', router);
 
 app.get('/', (req, res) => {

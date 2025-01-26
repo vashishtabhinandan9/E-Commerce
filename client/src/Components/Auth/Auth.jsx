@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
-import { FcGoogle } from "react-icons/fc";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "../../Redux/User/User_Atom";
+import axiosInstance from "../../Utils/Axios";
 export function SignIn() {
   const [AlreadyUser, setAlreadyUser] = useState(false);
   const [User, setUserState] = useRecoilState(userState);
@@ -12,18 +12,40 @@ export function SignIn() {
   const FirstNameRef = useRef();
   const LastNameRef = useRef();
   const PhoneRef = useRef();
+  const showMsg = (msg, color) => {
+    document.getElementById("msg").innerText = msg;
+    document.getElementById("msg").style = `color: ${color} `;
+  };
+
   const handleSignIn = async (e) => {
+    //showMsg("Login with Signupid", "red");
+
     e.preventDefault();
     try {
       const res = await axiosInstance.post("signin", {
         Email: SignInEmailRef.current.value,
         Password: SignInPasswordRef.current.value,
       });
-      const { token } = res.data.token;
-      // Save token to local storage
-      localStorage.setItem("jwtToken", token);
-      setUserState(res.data.User);
-    } catch (error) {}
+      console.log("signclicked");
+      console.log(res);
+
+      if (res.data.success) {
+        //prrint a message that say now do the login
+        //showMsg("", "green");
+        const { token } = res.data.data;
+        // Save token to local storage
+        console.log("token " + token);
+
+        localStorage.setItem("jwtToken", token);
+        console.log("user " + res.data.data.User);
+
+        setUserState(res.data.data.User);
+      } else {
+        console.log(res);
+      }
+    } catch (err) {
+      console.log("Error => " + err);
+    }
   };
 
   const handleSignUp = async (e) => {
@@ -36,19 +58,18 @@ export function SignIn() {
         Password: SignUpPasswordRef.current.value,
         Phone: PhoneRef.current.value,
       });
-      if (res.success) {
+      if (res.data.success) {
         //prrint a message that say now do the login
-
+        showMsg("Login with Signup id", "green");
         setAlreadyUser(true); //redirect to the login screen
+        console.log(AlreadyUser);
+      } else {
+        console.log(res);
       }
     } catch (err) {
       console.log(err);
     }
   };
-
-  function GoogleAuth() {
-    window.location.href = "http://localhost:3000/auth/google";
-  }
 
   return (
     <>
@@ -96,7 +117,7 @@ export function SignIn() {
               </label>
             </div>
 
-            <p className="underline w-max text-teal-500 antialiased">
+            <p className="underline w-max text-blue-400 antialiased">
               Forgot your Password
             </p>
 
@@ -109,20 +130,13 @@ export function SignIn() {
 
             <p
               onClick={() => setAlreadyUser(false)}
-              className="underline w-max text-teal-500 my-4 antialiased hover:cursor-pointer"
+              className="underline w-max text-blue-400 my-4 antialiased hover:cursor-pointer"
             >
               New customer? Create your account
             </p>
           </form>
-          <button
-            onClick={GoogleAuth}
-            className="flex p-2 items-center gap-4 mx-auto  rounded-lg  w-10/11 border border-gray-400 bg-white text-black text-lg hover:bg-gray-100 hover:border-black"
-          >
-            Signin With Google <FcGoogle />
-          </button>
         </>
       )}
-
       {!AlreadyUser && (
         <>
           <form
@@ -231,22 +245,17 @@ export function SignIn() {
 
             <p
               onClick={() => setAlreadyUser(true)}
-              className="underline w-max  text-sky-400 my-4 antialiased hover:cursor-pointer"
+              className="underline w-max  text-blue-400 my-4 antialiased hover:cursor-pointer"
             >
               Already have an account? Login here
             </p>
           </form>
-
-          <button
-            onClick={GoogleAuth}
-            className="flex p-2 items-center gap-4 mx-auto  rounded-lg  w-10/11 border border-gray-400 bg-white text-black text-lg hover:bg-gray-100 hover:border-black"
-          >
-            Signin With Google <FcGoogle />
-          </button>
         </>
       )}
 
-      {User && <></>}
+      <div>
+        <p id="msg" className="ml-8"></p>
+      </div>
     </>
   );
 }

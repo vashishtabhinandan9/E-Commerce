@@ -3,7 +3,6 @@ import bcrypt from 'bcryptjs'
 import { SignInSchema, SignUpSchema } from "../ZodSchema/AuthSchema.js";
 import { PrismaClient } from "@prisma/client";
 import { generateJwtToken } from "../Helper/AuthHelper.js";
-import passport from 'passport';
 const prisma = new PrismaClient();
 /*
 Route     /signup
@@ -15,8 +14,8 @@ Method    POST
 const SignUp = async (req, res) => {
 
     try {
-        const UserData = SignUpSchema.parse(req.body);
 
+        const UserData = SignUpSchema.parse(req.body);
         const existingUser = await prisma.User.findFirst({
             where: {
                 OR: [
@@ -33,6 +32,7 @@ const SignUp = async (req, res) => {
             })
         }
         else {
+
             const hashedPassword = await bcrypt.hash(UserData.Password, 10);
             const newUser = await prisma.User.create({
                 data: {
@@ -43,6 +43,7 @@ const SignUp = async (req, res) => {
                     Password: hashedPassword,
                 }
             })
+
             if (newUser) {
                 res.status(201).json({
                     success: true,
@@ -117,3 +118,4 @@ const SignIn = async (req, res) => {
     }
 }
 
+export { SignIn, SignUp };
