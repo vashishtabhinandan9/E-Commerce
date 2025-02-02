@@ -5,7 +5,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
 import { FiUser } from "react-icons/fi";
 import { IoIosSearch } from "react-icons/io";
-import BlackLogo from "../../Assets/BlackLogo.png";
+import BlackLogo from "../../../public/Assets/BlackLogo.png";
 import { SignIn } from "../Auth/Auth";
 import SeachPanelMobile from "../Left_Slide_Components/SeachPanelMobile";
 import FashionCart from "../ShoppingCart/Fashion/FashionCart";

@@ -21,3 +21,33 @@ model User {
   Password  String
   Phone     String @unique
 }
+
+model Category {
+  id            Int           @id @default(autoincrement()) // Primary Key
+  Name          String        @unique // Unique category name
+  ImageUrl      String?
+  Search        String[] // Array of keywords
+  Description   String?
+  Subcategories Subcategory[]
+}
+
+model Subcategory {
+  id          Int       @id @default(autoincrement())
+  Name        String    @unique
+  Description String?
+  ImageUrl    String?
+  Search      String[]
+  CategoryId  Int
+  Category    Category  @relation(fields: [CategoryId], references: [id]) // Relationship: Belongs to a category
+  Products    Product[]
+}
+
+model Product {
+  id            Int          @id @default(autoincrement()) // Unique identifier for each product
+  Name          String // Name of the product (e.g., "iPhone 14")
+  Description   String? // Optional detailed description of the product
+  Price         Float // Price of the product
+  ImageUrl      String? // URL of the product's image
+  SubcategoryId Int? // Optional: Foreign key pointing to the subcategory
+  Subcategory   Subcategory? @relation(fields: [SubcategoryId], references: [id]) // Relationship: Belongs to a subcategory
+}

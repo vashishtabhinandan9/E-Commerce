@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Foodlig from "../../Assets/FoodIcon-removebg-preview.png"
-import GroceryImg from "../../Assets/GroceriesIcon.png"
-import Electronics from "../../Assets/ElectronicsIconjpeg.jpeg"
+//import img from "../../../public/Assets/FashionIcon-removebg-preview.png";
+
+// import Electronics from "../../Assets/ElectronicsIconjpeg.jpeg";
 import { IoFastFoodOutline, IoNutritionOutline } from "react-icons/io5";
-import { Link} from "react-router-dom";
-
-
- const NextArrow = (props) => {
+import { Link } from "react-router-dom";
+import axiosInstance from "../../Utils/Axios";
+const NextArrow = (props) => {
   return (
     <div
       className={props.className}
@@ -18,7 +17,7 @@ import { Link} from "react-router-dom";
     />
   );
 };
- const PrevArrow = (props) => {
+const PrevArrow = (props) => {
   return (
     <div
       className={props.className}
@@ -27,48 +26,71 @@ import { Link} from "react-router-dom";
     />
   );
 };
-export default function CategoryCaousal() {
-  var Categories=[
-    {CategoryName:'Electronics',
-      CategoryLink:"Electronics",
-      CategoryImg:Electronics,
-      alt:"Electronics Store"
-  },
-  {CategoryName:'Food',
-  CategoryLink:"Food",
-  CategoryImg:Foodlig,
-   alt:"Food Store"
-  },
-  {CategoryName:'something',
-  CategoryLink:"Food",
-  CategoryImg:Foodlig,
-  alt:"Food2 Store"
-  },
-  {CategoryName:'something',
-  CategoryLink:"",
-  CategoryImg:Foodlig
-  },
-  {CategoryName:'Grocery',
-  CategoryLink:"Grocery",
-  CategoryImg:GroceryImg,
-  alt:"Grocery Store"
-  },
-  {CategoryName:'Food3',
-  CategoryLink:"Food",
-  CategoryImg:Foodlig,
-  alt:"Food3 Store"
-  },
-  ]
+export default function CategoryCaousal(props) {
+  const [Categories, setCategory] = useState([]);
+  console.log("props.subCategoryCarousal = >" + { ...props });
+  console.log("props.subCategoryCarousal =>", JSON.stringify(props, null, 2));
 
-  
+  useEffect(() => {
+    (async function () {
+      try {
+        if (props.subCategory && props.subCategory != "") {
+          const SubCategory = await axiosInstance.get(
+            `/category/${props.subCategory}`
+          );
+          console.log(SubCategory.data.data);
+          //setCategory(SubCategory.data.data.Subcategories);
+        } else {
+          const Category = await axiosInstance.get("/category/getAll");
+          setCategory(Category.data.data);
+          //console.log(SubCategory.data.data.Subcategories);
+        }
+      } catch (err) {
+        console.log("Error => " + err);
+      }
+    })();
+  }, []);
+  // var Categories = [
+  //   {
+  //     CategoryName: "Electronics",
+  //     CategoryLink: "Electronics",
+  //     CategoryImg: Electronics,
+  //     alt: "Electronics Store",
+  //   },
+  //   {
+  //     CategoryName: "Food",
+  //     CategoryLink: "Food",
+  //     CategoryImg: Foodlig,
+  //     alt: "Food Store",
+  //   },
+  //   {
+  //     CategoryName: "something",
+  //     CategoryLink: "Food",
+  //     CategoryImg: Foodlig,
+  //     alt: "Food2 Store",
+  //   },
+  //   { CategoryName: "something", CategoryLink: "", CategoryImg: Foodlig },
+  //   {
+  //     CategoryName: "Grocery",
+  //     CategoryLink: "Grocery",
+  //     CategoryImg: GroceryImg,
+  //     alt: "Grocery Store",
+  //   },
+  //   {
+  //     CategoryName: "Food3",
+  //     CategoryLink: "Food",
+  //     CategoryImg: Foodlig,
+  //     alt: "Food3 Store",
+  //   },
+  // ];
+
   const settings = {
-   
     infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     swipeToSlide: false,
-    nextArrow:<NextArrow/>,
+    nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
       {
@@ -77,7 +99,6 @@ export default function CategoryCaousal() {
           slidesToShow: 5,
           slidesToScroll: 2,
           infinite: true,
-          
         },
       },
       {
@@ -95,29 +116,32 @@ export default function CategoryCaousal() {
           slidesToScroll: 1,
         },
       },
-    ]
+    ],
   };
 
   return (
     <div className="w-10/12 mx-auto mt-4 mb-2 ">
       <Slider {...settings} className="">
-      { Categories.map((item,index)=>{
-        return(
-          <div key={index} id="CarousalItemContainer" className=" ">
-            <Link to={`/Category/${item.CategoryLink}`}>
-            <div className="w-20 h-20  mx-auto">
-            <img src={item.CategoryImg} alt= {item.alt} className="w-full h-full mx-auto"></img> 
+        {Categories.map((item, index) => {
+          return (
+            <div key={index} id="CarousalItemContainer" className=" ">
+              <Link to={`/Category/${item.Name}`}>
+                <div className="w-20 h-20  mx-auto">
+                  <img
+                    //src={img}
+                    src={item.ImageUrl}
+                    alt={item.Name}
+                    className="w-full h-full mx-auto"
+                  ></img>
+                </div>
+                <div className="text-center text-slate-700 text-xl">
+                  {item.Name}
+                </div>
+              </Link>
             </div>
-           <div className="text-center text-slate-700 text-xl">
-            {item.CategoryName}
-           </div>
-            </Link>
-        
-          </div>
-        )
-       })}
+          );
+        })}
       </Slider>
-    
     </div>
-  )
+  );
 }

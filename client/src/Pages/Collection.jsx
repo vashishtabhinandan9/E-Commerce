@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Filter_Sort_Menu from "../Components/Filter&Sort/Filter&Sort";
 import Single_Product from "../Components/Products/Single_Product";
+import axiosInstance from "../Utils/Axios";
 export default function Collection() {
   //get global collection data filter it based on the route path params you get so it here
   const Products = [
@@ -46,7 +47,8 @@ export default function Collection() {
     },
     // More products...
   ];
-
+  const [Product, SetProduct] = useState([]);
+  axiosInstance.get("", () => {});
   return (
     <>
       <Filter_Sort_Menu />
