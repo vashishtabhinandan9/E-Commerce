@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Left_Slide_Menu } from "../Slide_Menu/Left_Slide_Menu";
 import { Right_Slide_Menu } from "../Slide_Menu/Right_Slide_Menu";
 import { FaShoppingCart } from "react-icons/fa";
@@ -12,7 +12,20 @@ import FashionCart from "../ShoppingCart/Fashion/FashionCart";
 import UserMain from "../User/UserMain";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "../../Redux/User/User_Atom";
+import { categoryState } from "../../Redux/Category/MainCategoryAtom";
 const NewNav = () => {
+  const MainCategory = useRecoilValue(categoryState);
+  const navigate = useNavigate();
+
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
+    if (selectedCategory !== "All Categories") {
+      navigate(`/Category/${selectedCategory}`);
+    }
+    if (selectedCategory == "All Categories") {
+      navigate(`/Category/All`);
+    }
+  };
   return (
     <>
       <div className="flex justify-evenly items-center ">
@@ -42,12 +55,20 @@ const NewNav = () => {
         >
           <div
             id="NavDropDown"
-            className="h-5/6 flex items-center gap-2 bg-gray-100  border-gray-300 pr-2"
+            className="h-5/6 flex items-center gap-2 bg-gray-100 border-gray-300 pr-2"
           >
-            <select className="font-sans focus:outline-none bg-gray-100 text-base text-zinc-700">
-              <option className=" " value="All Categories">
-                All Categories
-              </option>
+            <select
+              className="font-sans focus:outline-none bg-gray-100 text-base text-zinc-700"
+              onChange={handleCategoryChange}
+            >
+              <option value="All Categories">All Categories</option>
+              {MainCategory &&
+                MainCategory.length > 0 &&
+                MainCategory.map((item) => (
+                  <option key={item.id} value={item.Name}>
+                    {item.Name}
+                  </option>
+                ))}
             </select>
             <span className="text-xl text-gray-400"> | </span>
           </div>

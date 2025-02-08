@@ -1,44 +1,87 @@
-import React from "react";
-import { IoIosSearch } from "react-icons/io";
-
-import { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { FaCheck, FaChevronDown } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { IoIosSearch } from "react-icons/io";
+import axiosInstance from "../../Utils/Axios";
+import { useNavigate } from "react-router-dom";
 
 function CategoryDropdown() {
-  const people = [
-    { name: "Wade Cooper" },
-    { name: "Arlene Mccoy" },
-    { name: "Devon Webb" },
-    { name: "Tom Cook" },
-    { name: "Tanya Fox" },
-    { name: "Hellen Schmidt" },
-  ];
-
-  const [selected, setSelected] = useState(people[0]);
+  // State variables
+  const [allSearchCategory, setAllSearchCategory] = useState([]); // Changed to state
+  const [selected, setSelected] = useState(null); // Initialize as null
   const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(true); // Loading state
+  const [categoryMap, setCategoryMap] = useState({});
+  const navigate = useNavigate();
+  useEffect(() => {
+    (async function () {
+      try {
+        const response = await axiosInstance.get(
+          `/category/category_subcategory`
+        );
+        const categories = response.data.data.categories || [];
+        const subcategories = response.data.data.subcategories || [];
 
-  const filteredPeople =
+        //console.log("response.data.data = " + JSON.stringify(response.data.data));
+        //console.log("response.data.data = " + response.data.data);
+        const categoriesWithType = categories.map((item) => ({
+          ...item,
+          type: "category",
+        }));
+        const subcategoriesWithType = subcategories.map((item) => ({
+          ...item,
+          type: "subcategory",
+        }));
+
+        const combinedCategories = [
+          ...categoriesWithType,
+          ...subcategoriesWithType,
+        ];
+
+        const categoryMapping = {};
+        categories.forEach((category) => {
+          categoryMapping[category.id] = category.Name;
+        });
+        setCategoryMap(categoryMapping);
+        setAllSearchCategory(combinedCategories); // Update state
+        setSelected(combinedCategories[0] || null); // Set first item as default
+      } catch (err) {
+        console.error("Error =>", err.message);
+      } finally {
+        setLoading(false); // Stop loading regardless of success or failure
+      }
+    })();
+  }, []);
+
+  const filteredCategory =
     query === ""
-      ? people
-      : people.filter((person) =>
-          person.name
-            .toLowerCase()
+      ? allSearchCategory
+      : allSearchCategory.filter((category) =>
+          category.Name.toLowerCase()
             .replace(/\s+/g, "")
             .includes(query.toLowerCase().replace(/\s+/g, ""))
         );
 
+  const handleSelection = (item) => {
+    setSelected(item);
+    console.log("selected" + item.Name);
+    if (item.type === "category") {
+      console.log();
+      navigate(`/Category/${item.Name}`);
+    } else if (item.type === "subcategory") {
+      const parentCategoryName = categoryMap[item.CategoryId];
+      navigate(`/Category/${parentCategoryName}/${item.Name}`);
+    }
+  };
   return (
-    <div className="w-11/12 h-12 m-4  shadow-sm   border-2 border-gray-200 rounded-lg">
-      <Combobox value={selected} onChange={setSelected}>
+    <div className="w-11/12 h-12 m-4 shadow-sm border-2 border-gray-200 rounded-lg">
+      <Combobox value={selected} onChange={handleSelection}>
         <div className="relative mt-1">
-          <div className="relative w-full overflow-scroll rounded-lg bg-white text-left shadow-sm focus:outline-none">
+          <div className="relative w-full rounded-lg bg-white text-left shadow-sm focus:outline-none">
             <Combobox.Input
-              className="w-full  py-2 pl-3 pr-10 text-lg leading-5 text-gray-900 bg-white focus:outline-none"
-              displayValue={(person) => person.name}
-              aria-labelledby="lblCategories"
-              aria-label="lblCategories"
+              className="w-full py-2 pl-3 pr-10 text-lg leading-5 text-gray-900 bg-white focus:outline-none"
+              displayValue={(category) => (category ? category.Name : "")}
               onChange={(event) => setQuery(event.target.value)}
             />
             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -48,6 +91,7 @@ function CategoryDropdown() {
               />
             </Combobox.Button>
           </div>
+
           <Transition
             as={Fragment}
             leave="transition ease-in duration-100"
@@ -55,48 +99,42 @@ function CategoryDropdown() {
             leaveTo="opacity-0"
             afterLeave={() => setQuery("")}
           >
-            <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-scroll z-10 rounded-md bg-white py-1 text-base shadow-md  focus:outline-none">
-              {filteredPeople.length === 0 && query !== "" ? (
-                <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
-                  Nothing found.
-                </div>
-              ) : (
-                filteredPeople.map((person, index) => (
-                  <Combobox.Option
-                    key={index}
-                    className={({ active }) =>
-                      `relative cursor-pointer select-none py-2 pl-10 pr-4 hover:bg-red-700  ${
-                        active ? "bg-black text-white" : "text-gray-900"
-                      }`
-                    }
-                    value={person}
-                  >
-                    {({ selected, active }) => (
-                      <>
+            <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-scroll z-10 rounded-md bg-white py-1 text-base shadow-md focus:outline-none">
+              {filteredCategory.map((item, index) => (
+                <Combobox.Option
+                  key={index}
+                  className={({ active }) =>
+                    `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
+                      active ? "bg-black text-white" : "text-gray-900"
+                    }`
+                  }
+                  value={item}
+                >
+                  {({ selected, active }) => (
+                    <>
+                      <span
+                        className={`block truncate ${
+                          selected ? "font-medium" : "font-normal"
+                        }`}
+                      >
+                        {item.Name}
+                      </span>
+                      {selected && (
                         <span
-                          className={`block truncate ${
-                            selected ? "font-medium" : "font-normal"
+                          className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+                            active ? "text-green-400" : "text-teal-600"
                           }`}
                         >
-                          {person.name}
+                          <FaCheck
+                            className="h-5 w-5 text-white"
+                            aria-hidden="true"
+                          />
                         </span>
-                        {selected ? (
-                          <span
-                            className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                              active ? "text-green-400" : "text-teal-600"
-                            }`}
-                          >
-                            <FaCheck
-                              className="h-5 w-5 text-white"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        ) : null}
-                      </>
-                    )}
-                  </Combobox.Option>
-                ))
-              )}
+                      )}
+                    </>
+                  )}
+                </Combobox.Option>
+              ))}
             </Combobox.Options>
           </Transition>
         </div>

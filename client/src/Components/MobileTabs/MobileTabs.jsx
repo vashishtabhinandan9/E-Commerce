@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 //import { useParams, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa6";
 import { FiUser } from "react-icons/fi";
 import { Right_Slide_Menu } from "../Slide_Menu/Right_Slide_Menu";
+
 import { SignIn } from "../Auth/Auth";
 import { SlGrid } from "react-icons/sl";
 import { PiMedalFill } from "react-icons/pi";
@@ -96,13 +98,14 @@ export const MobileTabs = () => {
       name: "WISHLIST",
     },
   ];
-
+  const navigate = useNavigate();
   return (
     <>
       <div className="lg:hidden bg-white shadow-lg p-3 fixed bottom-0 z-10 w-full flex items-center justify-between md:justify-evenly text-zinc-500 border">
         {allTypes.map((items) => (
           <div
             key={items.id}
+            onClick={() => items.id === "shop" && navigate(`/Category/All`)}
             className={
               "flex flex-col  relative items-center text-xl hover:text-black group"
             }
