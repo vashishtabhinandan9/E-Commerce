@@ -7,6 +7,8 @@ app.use(express.json());
 
 dotenv.config();
 const allowedOrigins = [
+    "https://e-commerce-2zit19h5y-vashishtabhinandan9s-projects.vercel.app",
+    "https://e-commerce-bnqkq27vl-vashishtabhinandan9s-projects.vercel.app/",
     "https://e-commerce-b0zpstgk5-vashishtabhinandan9s-projects.vercel.app", // Example frontend URL
     "https://e-commerce-cl70tckjk-vashishtabhinandan9s-projects.vercel.app", // Another example frontend URL
     "http://localhost:3000", // For local development
