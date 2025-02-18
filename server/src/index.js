@@ -6,24 +6,31 @@ const app = express();
 app.use(express.json());
 
 dotenv.config();
+
 const allowedOrigins = [
-    "https://e-commerce-kappa-fawn.vercel.app", // Production frontend
-    "https://*.vercel.app", // Allow all Vercel subdomains
+    "https://e-commerce-kappa-fawn.vercel.app", // Production Frontend
+    /\.vercel\.app$/, // Allows any Vercel subdomain
 ];
+
+app.use((req, res, next) => {
+    console.log("Incoming Request Origin:", req.headers.origin);
+    next();
+});
 
 app.use(
     cors({
         origin: function (origin, callback) {
-            if (!origin || allowedOrigins.some((o) => origin.match(new RegExp(`^${o.replace(/\*/g, ".*")}$`)))) {
+            if (!origin || allowedOrigins.some((o) => origin.match(o))) {
+                console.log(`✅ Allowed: ${origin}`);
                 callback(null, true);
             } else {
+                console.log(`⛔ Blocked by CORS: ${origin}`);
                 callback(new Error("Not allowed by CORS"));
             }
         },
         credentials: true,
     })
 );
-
 
 app.use('/', router);
 
