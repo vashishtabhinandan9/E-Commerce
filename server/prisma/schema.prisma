@@ -43,11 +43,55 @@ model Subcategory {
 }
 
 model Product {
-  id            Int          @id @default(autoincrement()) // Unique identifier for each product
+  id            Int                @id @default(autoincrement()) // Unique identifier for each product
   Name          String // Name of the product (e.g., "iPhone 14")
   Description   String? // Optional detailed description of the product
   Price         Float // Price of the product
   ImageUrl      String? // URL of the product's image
   SubcategoryId Int? // Optional: Foreign key pointing to the subcategory
-  Subcategory   Subcategory? @relation(fields: [SubcategoryId], references: [id]) // Relationship: Belongs to a subcategory
+  Subcategory   Subcategory?       @relation(fields: [SubcategoryId], references: [id]) // Relationship: Belongs to a subcategory
+  Sku           String             @unique // Unique identifier for different product variations
+  Variations    ProductVariation[]
+}
+
+model Variation {
+  id                Int                @id @default(autoincrement())
+  Name              String             @unique // Type of variation (e.g., "Color", "Size", "Connectivity")
+  Options           VariationOption[]
+  ProductVariations ProductVariation[] // 🔹 Fix: Added missing relation
+}
+
+model VariationOption {
+  id                     Int                      @id @default(autoincrement())
+  Name                   String // Variation option (e.g., "Red", "Blue", "Wired", "Wireless")
+  VariationId            Int
+  Variation              Variation                @relation(fields: [VariationId], references: [id])
+  ProductVariationOption ProductVariationOption[]
+}
+
+model ProductVariation {
+  id          Int                      @id @default(autoincrement())
+  ProductId   Int
+  Product     Product                  @relation(fields: [ProductId], references: [id])
+  VariationId Int
+  Variation   Variation                @relation(fields: [VariationId], references: [id]) // 🔹 Fix: Added correct relation
+  Options     ProductVariationOption[]
+}
+
+model ProductVariationOption {
+  id                 Int              @id @default(autoincrement())
+  ProductVariationId Int
+  ProductVariation   ProductVariation @relation(fields: [ProductVariationId], references: [id])
+  VariationOptionId  Int
+  VariationOption    VariationOption  @relation(fields: [VariationOptionId], references: [id])
+  Price              Float
+  Sku                String           @unique // SKU for this specific variation combination
+  Stock              Stock[]
+}
+
+model Stock {
+  id                       Int                    @id @default(autoincrement())
+  ProductVariationOptionId Int
+  ProductVariationOption   ProductVariationOption @relation(fields: [ProductVariationOptionId], references: [id])
+  Quantity                 Int // Stock available
 }

@@ -38,7 +38,7 @@ function App() {
               element={<CollectionLayoutHOC Component={<Collection />} />}
             /> */}
             <Route
-              path="/Product/:id"
+              path="/Product/:ProductId"
               exact
               element={<ProductLayoutHOC Component={<Product />} />}
             />

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Rating from "react-rating";
+import { useParams, useLocation } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { FaChevronDown } from "react-icons/fa6";
 import { IoStar } from "react-icons/io5";
@@ -10,6 +11,7 @@ import { IoStarOutline } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
 import { useRecoilState } from "recoil";
 import { cartState } from "../../Redux/Cart/Cart_Atom";
+import axiosInstance from "../../Utils/Axios";
 const NextArrow = (props) => {
   return (
     <div
@@ -30,12 +32,77 @@ const PrevArrow = (props) => {
 };
 export default function Product_Info() {
   const [Cart, setCartstate] = useRecoilState(cartState);
-
-  const addToCartHandler = () => {
-    setCartstate((PrevState) => {
-      [...PrevState, { item }];
+  const [Product, setProduct] = useState({});
+  const [Variation, setVariation] = useState([]);
+  const [Price, setPrice] = useState(0);
+  const { ProductId } = useParams();
+  const [selectedOptions, setSelectedOptions] = useState({});
+  useEffect(() => {
+    (async function () {
+      try {
+        const res = await axiosInstance.get(`/product/${ProductId}`);
+        const productData = res.data.data;
+        setProduct(productData);
+        setVariation(productData.Variations);
+        console.log("Product", productData);
+        console.log("Variation", productData.Variations);
+      } catch (error) {
+        console.error("Error fetching product data:", error);
+      }
+    })();
+  }, [ProductId]);
+  // Re-run effect when ProductId changes
+  const handleOptionChange = (variationId, option) => {
+    setSelectedOptions((prevSelectedOptions) => {
+      const updatedOptions = { ...prevSelectedOptions, [variationId]: option };
+      return updatedOptions;
     });
   };
+
+  useEffect(() => {
+    // This effect runs after selectedOptions has been updated
+    const maxPrice = Object.values(selectedOptions).reduce((max, option) => {
+      return option.Price > max ? option.Price : max;
+    }, 0);
+    setPrice(maxPrice);
+    console.log("Updated selectedOptions:", selectedOptions);
+  }, [selectedOptions]);
+
+  const addToCartHandler = () => {
+    setCartstate((prevCart) => {
+      const existingProductIndex = prevCart.findIndex(
+        (item) => item.ProductID === Product.ProductID
+      );
+
+      if (existingProductIndex !== -1) {
+        // If the product exists, increment its quantity
+        const updatedCart = [...prevCart];
+        console.log(
+          "exist +",
+          updatedCart[existingProductIndex],
+          existingProductIndex
+        );
+
+        updatedCart[existingProductIndex] = {
+          ...updatedCart[existingProductIndex],
+          quantity: updatedCart[existingProductIndex].quantity + 1,
+        };
+        return updatedCart;
+      } else {
+        // If the product doesn't exist, add it with quantity 1
+        const newCartItem = {
+          ...Product,
+          selectedOptions,
+          quantity: 1,
+        };
+        newCartItem.Price = Price == 0 ? Product.Price : Price;
+        console.log("newCartItem =", newCartItem);
+        return [...prevCart, newCartItem];
+      }
+    });
+  };
+
+  // below Categories has to be changes to array of images of the product which will come from database
   var Categories = [
     {
       CategoryName: "something",
@@ -86,16 +153,7 @@ export default function Product_Info() {
       },
     ],
   };
-  const Sizes = [
-    { name: "XXS", inStock: false },
-    { name: "XS", inStock: true },
-    { name: "S", inStock: true },
-    { name: "M", inStock: true },
-    { name: "L", inStock: true },
-    { name: "XL", inStock: true },
-    { name: "2XL", inStock: true },
-    { name: "3XL", inStock: true },
-  ];
+  // below Sizes has to be changes to array of variiation  of the product which will come from database
 
   return (
     <>
@@ -134,8 +192,8 @@ export default function Product_Info() {
           className="w-full  md:w-7/12 border-2 border-green-400 mx-2 my-2 p-4"
         >
           <div className="flex justify-between text-3xl font-light">
-            <h1 className="">Product Name</h1>
-            <h1>Rs.1299</h1>
+            <h1 className="">{Product.ProductName}</h1>
+            <h1>$ {Price == 0 ? Product.Price : Price}</h1>
           </div>
           <div className="flex items-center gap-4">
             <Rating
@@ -151,31 +209,36 @@ export default function Product_Info() {
             size chart
           </p>
           <div className="w-8/12 rounded-md bg-slate-100 mx-auto mt-4 p-4">
-            <h1 className="text-xl font-semibold">Choose Size</h1>
             <div>
               <form>
-                <fieldset>
-                  {Sizes.map((item) => {
-                    return (
-                      <>
-                        <input
-                          type="radio"
-                          id={item.name}
-                          name="Size"
-                          value={item.name}
-                          className={`peer/${item.name}`}
-                        ></input>
-                        <label
-                          for={item.name}
-                          className={`peer-checked/${item.name}:bg-red-500 `}
-                        >
-                          {" "}
-                          {item.name}
-                        </label>
-                      </>
-                    );
-                  })}
-                </fieldset>
+                {Variation &&
+                  Variation.length > 0 &&
+                  Variation.map((item) => (
+                    <fieldset key={item.VariationID}>
+                      <legend className="text-xl font-semibold">
+                        Choose {item.VariationName}:
+                      </legend>
+                      {item.Options &&
+                        item.Options.length > 0 &&
+                        item.Options.map((option) => (
+                          <label key={option.OptionID}>
+                            <input
+                              type="radio"
+                              name={option.OptionName}
+                              value={option.OptionID}
+                              checked={
+                                selectedOptions[item.VariationID]?.OptionID ===
+                                option.OptionID
+                              }
+                              onChange={() =>
+                                handleOptionChange(item.VariationID, option)
+                              }
+                            />
+                            {option.OptionName}
+                          </label>
+                        ))}
+                    </fieldset>
+                  ))}
               </form>
             </div>
             <div className="mx-auto my-2 w-10/12  ">
