@@ -10,6 +10,7 @@ app.use(express.json());
 // ✅ Allowed Origins (Regex pattern for Vercel subdomains)
 const allowedOrigins = [
     "https://e-commerce-kappa-fawn.vercel.app", // Production Frontend
+    process.env.FrontendURL,
     /\.vercel\.app$/, // Allows any Vercel subdomain
 ];
 
