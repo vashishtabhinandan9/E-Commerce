@@ -6,9 +6,22 @@ const app = express();
 app.use(express.json());
 
 dotenv.config();
+const allowedOrigins = [
+    "https://e-commerce-b0zpstgk5-vashishtabhinandan9s-projects.vercel.app", // Example frontend URL
+    "https://e-commerce-cl70tckjk-vashishtabhinandan9s-projects.vercel.app", // Another example frontend URL
+    "http://localhost:3000", // For local development
+];
+
 app.use(
     cors({
-        origin: "*", // ⚠️ Allows all origins (NOT recommended for production)
+        origin: (origin, callback) => {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true); // Allow the request
+            } else {
+                callback(new Error("Not allowed by CORS")); // Block the request
+            }
+        },
+        methods: "GET,POST,PUT,DELETE",
         credentials: true,
     })
 );
