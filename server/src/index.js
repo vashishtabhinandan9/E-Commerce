@@ -6,9 +6,13 @@ const app = express();
 app.use(express.json());
 
 dotenv.config();
-app.use(cors({
-    origin: "*", // Allow requests from any origin
-}));
+app.use(
+    cors({
+        origin: "*", // ⚠️ Allows all origins (NOT recommended for production)
+        credentials: true,
+    })
+);
+
 app.use('/', router);
 
 app.get('/', (req, res) => {
