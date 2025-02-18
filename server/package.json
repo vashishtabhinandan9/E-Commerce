@@ -5,10 +5,11 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "build": "babel src --out-dir dist",
+    "build": "prisma generate && babel src --out-dir dist",
     "start": "node src/index.js",
     "dev": "npm run build && nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "prisma generate"
   },
   "author": "",
   "license": "ISC",
