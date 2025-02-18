@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
     headers: {
         "Content-Type": "application/json",
     },
-    withCredentials: true, // 👈 Add this to send cookies/auth tokens
+    withCredentials: true,
 });
 
 export default axiosInstance;

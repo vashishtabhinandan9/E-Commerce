@@ -34,7 +34,10 @@ app.use((req, res, next) => {
     console.log("🔍 Incoming Request Origin:", req.headers.origin || "No Origin Sent");
     next();
 });
-
+app.use((req, res, next) => {
+    console.log("Full Request Headers:", req.headers);
+    next();
+});
 // ✅ Manually Set CORS Headers (Fallback)
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
