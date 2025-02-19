@@ -182,6 +182,7 @@ export default function CategoryCaousal(props) {
                     //src={img}
                     src={item.ImageUrl}
                     alt={item.Name}
+                    loading="lazy"
                     className="w-full h-full mx-auto"
                   ></img>
                 </div>

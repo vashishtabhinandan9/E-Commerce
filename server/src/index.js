@@ -11,47 +11,17 @@ app.use(express.json());
 const allowedOrigins = [
     "https://e-commerce-kappa-fawn.vercel.app", // Production Frontend
     process.env.FrontendURL,
+    "http://localhost:5173/",
+    "*",
     /\.vercel\.app$/, // Allows any Vercel subdomain
 ];
 
 // ✅ CORS Middleware (MUST be First)
-app.use(
-    cors({
-        origin: function (origin, callback) {
-            if (!origin || allowedOrigins.some((o) => typeof o === "string" ? o === origin : o.test(origin))) {
-                console.log(`✅ Allowed Origin: ${origin}`);
-                callback(null, true);
-            } else {
-                console.log(`⛔ Blocked by CORS: ${origin}`);
-                callback(new Error("Not allowed by CORS"));
-            }
-        },
-        credentials: true,
-    })
-);
+app.use(cors({
+    origin: "*", // Allow requests from any origin
+}));
 
-// ✅ Debug: Log Incoming Origin
-app.use((req, res, next) => {
-    console.log("🔍 Incoming Request Origin:", req.headers.origin || "No Origin Sent");
-    next();
-});
-app.use((req, res, next) => {
-    console.log("Full Request Headers:", req.headers);
-    next();
-});
-// ✅ Manually Set CORS Headers (Fallback)
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 
-    // Handle preflight requests
-    if (req.method === "OPTIONS") {
-        return res.sendStatus(200);
-    }
-
-    next();
-});
 
 // ✅ Routes
 app.use('/', router);

@@ -119,17 +119,25 @@ export default function Collection() {
                 <div
                   key={item.Name}
                   ref={lastProductElementRef}
-                  className="w-full"
+                  className="w-full min-h-[250px]"
                 >
-                  <Suspense fallback={<div>Loading...</div>}>
+                  <Suspense
+                    fallback={
+                      <div className="w-full h-60 bg-gray-200 animate-pulse"></div>
+                    }
+                  >
                     <Single_Product Product_Data={item} />
                   </Suspense>
                 </div>
               );
             } else {
               return (
-                <div key={item.id} className="w-full">
-                  <Suspense fallback={<div>Loading...</div>}>
+                <div key={item.id} className="w-full min-h-[250px]">
+                  <Suspense
+                    fallback={
+                      <div className="w-full h-60 bg-gray-200 animate-pulse"></div>
+                    }
+                  >
                     <Single_Product Product_Data={item} />
                   </Suspense>
                 </div>

@@ -13,6 +13,9 @@ export default function Single_Product({ Product_Data }) {
           <img
             src={Product_Data.ImageUrl}
             alt={Product_Data.Name}
+            loading="lazy"
+            width="200" // ✅ Explicit width
+            height="200" // ✅ Explicit height
             className="h-full w-full object-cover object-center group-hover:opacity-75"
           />
         </div>

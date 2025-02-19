@@ -37,18 +37,17 @@ const NewNav = () => {
           />
         </div>
 
-        <div
-          id="SVGLogo"
-          className="w-40 h-max mx-4 flex items-center  border-2 border-green-400 "
-        >
-          <Link to="/">
-            <img
-              src={BlackLogo}
-              alt="SamneWali"
-              className="object-fill w-full h-full  mx-auto "
-            ></img>
-          </Link>
-        </div>
+        <Link to="/">
+          <img
+            id="SaamneWali_Logo"
+            src={BlackLogo}
+            alt="SamneWali"
+            width="160" // ✅ Explicit dimensions
+            height="74" // ✅ Prevents layout shift
+            className="object-cover w-40 h-16 border-2 border-green-400"
+          />
+        </Link>
+
         <div
           id="CenterNavElements"
           className="hidden lg:flex w-7/12 h-12 m-auto bg-gray-100 shadow-md  flex items-center gap-3  border border-gray-200 rounded"

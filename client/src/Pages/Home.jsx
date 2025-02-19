@@ -46,8 +46,12 @@ export default function Home() {
       >
         {Array.isArray(Products) &&
           Products.map((item) => (
-            <div key={item.id} className="w-full">
-              <Suspense fallback={<div>Loading...</div>}>
+            <div key={item.id} className="w-full min-h-[250px]">
+              <Suspense
+                fallback={
+                  <div className="w-full h-60 bg-gray-200 animate-pulse"></div>
+                }
+              >
                 <Single_Product Product_Data={item} />
               </Suspense>
             </div>
@@ -72,8 +76,12 @@ export default function Home() {
       >
         {Array.isArray(Products) &&
           Products.map((item) => (
-            <div key={item.id} className="w-full">
-              <Suspense fallback={<div>Loading...</div>}>
+            <div key={item.id} className="w-full min-h-[250px]">
+              <Suspense
+                fallback={
+                  <div className="w-full h-60 bg-gray-200 animate-pulse"></div>
+                }
+              >
                 <Single_Product Product_Data={item} />
               </Suspense>
             </div>
