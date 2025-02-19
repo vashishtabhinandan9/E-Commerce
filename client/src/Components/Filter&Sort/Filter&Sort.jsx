@@ -1,8 +1,6 @@
 import { FaFilter } from "react-icons/fa";
-import { FaChevronDown } from "react-icons/fa6";
-import { Popover } from "@headlessui/react";
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment } from "react";
 import { Left_Slide_Menu } from "../Slide_Menu/Left_Slide_Menu";
 import FilterPanel from "../Left_Slide_Components/FilterPanel";
 export default function Filter_Sort_Menu() {

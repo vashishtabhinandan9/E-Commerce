@@ -1,7 +1,4 @@
-import React from "react";
-import Home_Layout from "../Layouts/Home.Layout";
 import Product_Layout from "../Layouts/Product.Layout";
-import CategoryCaousal from "../Components/Categories/CategoryCaousal";
 
 export default function ProductLayoutHOC(props) {
   return (

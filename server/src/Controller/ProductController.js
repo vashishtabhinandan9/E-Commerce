@@ -1,8 +1,5 @@
-import express from "express"
-import bcrypt from 'bcryptjs'
-import { SignInSchema, SignUpSchema } from "../ZodSchema/AuthSchema.js";
+
 import { PrismaClient } from "@prisma/client";
-import { generateJwtToken } from "../Helper/AuthHelper.js";
 const prisma = new PrismaClient();
 /*
 Route     /

@@ -1,10 +1,8 @@
-import React from 'react'
-
-import Product_Info from '../Components/Products/Product_Info'
+import Product_Info from "../Components/Products/Product_Info";
 export default function Product() {
   return (
     <>
-    <Product_Info/>
+      <Product_Info />
     </>
-  )
+  );
 }

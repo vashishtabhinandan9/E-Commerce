@@ -6,8 +6,6 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import "slick-carousel/slick/slick-theme.css";
 //import img from "../../../public/Assets/FashionIcon-removebg-preview.png";
 
-// import Electronics from "../../Assets/ElectronicsIconjpeg.jpeg";
-import { IoFastFoodOutline, IoNutritionOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
 import axiosInstance from "../../Utils/Axios";
 const NextArrow = (props) => {

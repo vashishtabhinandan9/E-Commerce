@@ -1,13 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="SaamnWali - Your one-stop shop for Electronics, Grocery, Phones, Cameras, Audio Devices, Fashion, and more. Shop now for the best deals!" />
+    <meta name="keywords" content="eCommerce, online shopping, electronics, fashion, grocery, best deals" />
+    <meta name="author" content="SaamnWali eCommerce Shop" />
+
+    <!-- Open Graph (For Social Sharing) -->
+    <meta property="og:title" content="SaamnWali - Best Online Shopping" />
+    <meta property="og:description" content="Find the best deals on electronics, fashion, groceries, and more at SaamnWali!" />
+    <meta property="og:image" content="https://yourdomain.com/assets/BlackLogo.avif" />
+    <meta property="og:url" content="https://yourdomain.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Preload Critical Assets -->
+    <link rel="preload" as="image" href="/public/assets/BlackLogo.avif" type="image/avif" crossorigin="anonymous" />
+
+    <!-- Favicon (Supports More Browsers) -->
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/favicon.png" />
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Title -->
+    <title>SaamnWali | Best Online Shopping</title>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Main JS Bundle -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -1,5 +1,3 @@
-import React from "react";
-import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { cartState } from "../../../Redux/Cart/Cart_Atom";
 import { RiDeleteBin6Line } from "react-icons/ri";

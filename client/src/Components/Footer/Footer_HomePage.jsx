@@ -1,158 +1,189 @@
-import React from 'react'
-import { Disclosure } from '@headlessui/react'
-import { FaChevronDown } from "react-icons/fa6";
+import React from "react";
+import { Disclosure } from "@headlessui/react";
+import {
+  FaChevronDown,
+  FaInstagram,
+  FaFacebookF,
+  FaPinterest,
+  FaYoutube,
+} from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-import { FaInstagram } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
-import { FaPinterest } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
-var coolStuff =['accessories' ,
-    'hats & caps' ,
-    'clothing' ,
-    'new arrivals' ,
-    'skateboards' ,
-    'eyewear' ,
-    'um steals', 
-    'instagram' ,
-    'shop' ,
-    'blog' ,
-    'streetwear',
-    'hub' ,
-    'about', 
-    'us' ,
-    'offers']
-function Footer_HomePage_sm(){
-    return (
+
+// Social Media Links
+const socialIcons = [
+  { icon: <FaFacebookF />, link: "#", label: "Facebook" },
+  { icon: <FaInstagram />, link: "#", label: "Instagram" },
+  { icon: <FaPinterest />, link: "#", label: "Pinterest" },
+  { icon: <FaYoutube />, link: "#", label: "YouTube" },
+];
+
+// Footer Links
+const footerSections = {
+  "COOL STUFF": [
+    "Accessories",
+    "Hats & Caps",
+    "Clothing",
+    "New Arrivals",
+    "Skateboards",
+    "Eyewear",
+    "UM Steals",
+    "Instagram",
+    "Shop",
+    "Blog",
+    "Streetwear",
+    "Hub",
+    "About Us",
+    "Offers",
+  ],
+  "BORING STUFF": [
+    "Terms & Conditions",
+    "Privacy Policy",
+    "Shipping Info",
+    "Returns & Exchanges",
+    "FAQ",
+    "Customer Service",
+    "Careers",
+  ],
+};
+
+// Reusable Disclosure Component (Mobile Menu)
+const DisclosureList = ({ title, items }) => (
+  <Disclosure>
+    {({ open }) => (
       <>
-        <div className="bg-black text-white p-4 w-full ">
-          <Disclosure>
-            <Disclosure.Button className=" w-full flex justify-between items-center ">
-              <span>COOL STUFF</span>
-              <div>
-                <FaChevronDown className="ui-open:rotate-180 ui-open:transform h-4 w-4" />
-              </div>
-            </Disclosure.Button>
-            <Disclosure.Panel className="text-white px-4">
-              {coolStuff.map((item, index) => {
-                return (
-                  <li key={index} className="list-none">
-                    {item}
-                  </li>
-                );
-              })}
-            </Disclosure.Panel>
-          </Disclosure>
-          <br />
-          <Disclosure>
-            <Disclosure.Button className=" w-full flex justify-between items-center ">
-              <span>BORING STUFF</span>
-              <div>
-                <FaChevronDown className="ui-open:rotate-180 ui-open:transform h-4 w-4" />
-              </div>
-            </Disclosure.Button>
-            <Disclosure.Panel className="text-white px-4">
-              {coolStuff.map((item, index) => {
-                return (
-                  <>
-                    <li key={index} className="list-none">
-                      {item}
-                    </li>
-                  </>
-                );
-              })}
-            </Disclosure.Panel>
-          </Disclosure>
-          <br />
-          <p className="text-3xl font-md">reach out to us</p>
-          <span className="flex items-center">
-            <IoMdMail className="text-xl" />
-            <p className="text-lg">hello@gmail.com</p>
-          </span>
-          Follow on social media
-          <div className="w-max h-12 mt-4 flex justify-center gap-4 ">
-            <div className="border-2 w-10 h-10 rounded-full border-white flex items-center justify-center hover:animate-bounce">
-              <FaFacebookF className="text-white m-auto" />
-            </div>
-            <div className="border-2 w-10 h-10 rounded-full border-white flex items-center justify-center hover:animate-bounce">
-              <FaInstagram className="text-white m-auto" />
-            </div>
-            <div className="border-2 w-10 h-10 rounded-full border-white flex items-center justify-center hover:animate-bounce">
-              <FaPinterest className="text-white m-auto" />
-            </div>
-            <div className="border-2 w-10 h-10 rounded-full border-white flex items-center justify-center hover:animate-bounce">
-              <FaYoutube className="text-white m-auto" />
-            </div>
-          </div>
-        </div>
+        <Disclosure.Button
+          className="w-full flex justify-between items-center py-2 focus:outline-none"
+          aria-expanded={open}
+        >
+          <span className="font-medium">{title}</span>
+          <FaChevronDown
+            className={`h-4 w-4 transition-transform duration-200 ${
+              open ? "rotate-180" : ""
+            }`}
+            aria-hidden="true"
+          />
+        </Disclosure.Button>
+        <Disclosure.Panel className="text-white px-4">
+          <ul className="space-y-1">
+            {items.map((item, index) => (
+              <li key={index} className="list-none">
+                <a
+                  href="#"
+                  className="hover:underline focus:ring-2 focus:ring-white px-1"
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Disclosure.Panel>
       </>
-    );
-}
+    )}
+  </Disclosure>
+);
 
-function Footer_HomePage_lg() {
-  return (
-    <>
-      <div className="bg-black text-white p-4 w-full flex justify-around" >
-        <div className="">
-          <span>COOL STUFF</span>
-          {coolStuff.map((item, index) => {
-            return (
-              <>
-                <li key={index} className="list-none">
-                  {item}
-                </li>
-              </>
-            );
-          })}
-        </div>
-        <div className="">
-          <span>BORING STUFF</span>
-          {coolStuff.map((item, index) => {
-            return (
-              <>
-                <li key={index} className='list-none'>
-                  {item}
-                </li>
-              </>
-            );
-          })}
-        </div>
+// Reusable Social Media Links Component
+const SocialLinks = () => (
+  <div className="flex justify-start gap-4 mt-4">
+    {socialIcons.map(({ icon, link, label }, index) => (
+      <a
+        key={index}
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="border-2 w-10 h-10 rounded-full border-white flex items-center justify-center hover:scale-110 transition-transform"
+        aria-label={`Follow us on ${label}`}
+      >
+        <span className="text-white text-lg">{icon}</span>
+      </a>
+    ))}
+  </div>
+);
 
-        <div>
-          <span> reach out to us</span>
-          <span className="flex items-center">
-            <IoMdMail className="text-xl" />
-            <p className="text-lg">hello@gmail.com</p>
-          </span>
-          Follow on social media
-          <div className="w-max mx-auto h-12 flex justify-center gap-4 mt-2">
-            <div className="border-2 w-12 h-12 rounded-full border-white flex items-center justify-center hover:animate-bounce ">
-              <FaFacebookF className="text-white m-auto " />
-            </div>
-            <div className="border-2 w-12 h-12 rounded-full border-white flex items-center justify-center hover:animate-bounce ">
-              <FaInstagram className="text-white m-auto " />
-            </div>
-            <div className="border-2 w-12 h-12 rounded-full border-white flex items-center justify-center hover:animate-bounce ">
-              <FaPinterest className="text-white m-auto" />
-            </div>
-            <div className="border-2 w-12 h-12 rounded-full border-white flex items-center justify-center hover:animate-bounce ">
-              <FaYoutube className="text-white m-auto" />
-            </div>
-          </div>
-        </div>
+// Small Screen Footer
+const Footer_HomePage_sm = () => (
+  <nav
+    aria-label="Footer Navigation"
+    className="bg-black text-white p-4 w-full"
+  >
+    {Object.entries(footerSections).map(([title, items], index) => (
+      <div key={index} className="mb-4">
+        <DisclosureList title={title} items={items} />
       </div>
-    </>
-  );
-}
+    ))}
+    <div className="mt-4">
+      <p className="text-xl font-medium">Reach Out to Us</p>
+      <div className="flex items-center gap-2 mt-2">
+        <IoMdMail className="text-xl" aria-hidden="true" />
+        <p className="text-lg">
+          <a
+            href="mailto:hello@gmail.com"
+            className="hover:underline focus:ring-2 focus:ring-white"
+          >
+            hello@gmail.com
+          </a>
+        </p>
+      </div>
+      <p className="mt-4">Follow us on social media</p>
+      <SocialLinks />
+    </div>
+  </nav>
+);
+
+// Large Screen Footer
+const Footer_HomePage_lg = () => (
+  <footer
+    className="bg-black text-white p-6 w-full flex flex-wrap justify-between lg:justify-around"
+    role="contentinfo"
+  >
+    {Object.entries(footerSections).map(([title, items], index) => (
+      <div key={index}>
+        <h2 className="font-semibold text-lg mb-2">{title}</h2>
+        <ul className="space-y-1">
+          {items.map((item, idx) => (
+            <li key={idx} className="list-none">
+              <a
+                href="#"
+                className="hover:underline focus:ring-2 focus:ring-white px-1"
+              >
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+
+    {/* Contact & Social Media Section */}
+    <div>
+      <h2 className="font-semibold text-lg mb-2">Reach Out to Us</h2>
+      <div className="flex items-center gap-2">
+        <IoMdMail className="text-xl" aria-hidden="true" />
+        <p className="text-lg">
+          <a
+            href="mailto:hello@gmail.com"
+            className="hover:underline focus:ring-2 focus:ring-white"
+          >
+            hello@gmail.com
+          </a>
+        </p>
+      </div>
+      <h2 className="font-semibold text-lg mt-4">Follow Us</h2>
+      <SocialLinks />
+    </div>
+  </footer>
+);
+
+// Main Footer Component
 export default function Footer_HomePage() {
   return (
-    <>
-    <div className=''>
-    <div className='lg:hidden md:flex '><Footer_HomePage_sm/></div>
-    <div className='hidden lg:flex'> <Footer_HomePage_lg/></div>
+    <div className="min-h-[400px]">
+      <div className="lg:hidden">
+        <Footer_HomePage_sm />
+      </div>
+      <div className="hidden lg:flex">
+        <Footer_HomePage_lg />
+      </div>
     </div>
-    
-    </>
   );
 }
-
-

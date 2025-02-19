@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
-import { Dialog, Transition } from "@headlessui/react";
-import { SignIn } from "../Auth/Auth";
 
 export function Right_Slide_Menu({ Component, Icon, Heading, Name = "" }) {
   const [Isopen, setIsopen] = useState(false);
