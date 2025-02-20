@@ -13,6 +13,7 @@ const Product = lazy(() => import("./Pages/Product"));
 const ErrorPage = lazy(() => import("./error-page"));
 
 // UI Components
+import { Checkout } from "./Components/Checkout/Checkout";
 import { Nav } from "./Components/Navbar/HomeNavbar";
 import Footer_HomePage from "./Components/Footer/Footer_HomePage";
 import { MobileTabs } from "./Components/MobileTabs/MobileTabs";
@@ -40,6 +41,7 @@ function App() {
                 path="/Category/:categoryName/:subcategoryName?"
                 element={<CollectionLayoutHOC Component={<Collection />} />}
               />
+              <Route path="/Checkout" element={<Checkout />} />
               <Route
                 path="/Product/:ProductId"
                 element={<ProductLayoutHOC Component={<Product />} />}
