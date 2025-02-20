@@ -15,52 +15,6 @@ import { userState } from "../../Redux/User/User_Atom";
 import UserMain from "../User/UserMain";
 export const MobileTabs = () => {
   console.log("mobile tab ");
-  // const [allTypes, setAllTypes] = useState([
-  //   {
-  //     id: "account",
-
-  //     icon: (
-  //       <Right_Slide_Menu
-  //         Component={User == null ? <SignIn /> : <UserMain />}
-  //         Icon={<FiUser className="w-5 h-5 mx-auto" />}
-  //         Heading=" "
-  //         Name={User == null ? "Account" : "dashboard"}
-  //       />
-  //     ),
-  //     name: "ACCOUNT",
-  //   },
-  //   {
-  //     id: `help`,
-  //     icon: (
-  //       <Up_Slide_Menu
-  //         Icon={<RiQuestionnaireLine className="w-5 h-5 mx-auto" />}
-  //         Name="Help_Menu"
-  //       />
-  //     ),
-  //     name: "HELP",
-  //   },
-  //   {
-  //     id: `rewards`,
-  //     icon: (
-  //       <Up_Slide_Menu
-  //         Icon={<PiMedalFill className="w-5 h-5 mx-auto" />}
-  //         Name="Bank_Menu"
-  //       />
-  //     ),
-  //     name: "REWARDS",
-  //   },
-  //   {
-  //     id: "shop",
-  //     icon: <SlGrid />,
-  //     name: "SHOP",
-  //   },
-  //   {
-  //     id: `wishlist`,
-  //     icon: <FaRegHeart />,
-  //     name: "WISHLIST",
-  //   },
-  // ]);
-
   const allTypes = [
     {
       id: "account",
@@ -98,7 +52,9 @@ export const MobileTabs = () => {
       name: "WISHLIST",
     },
   ];
+
   const navigate = useNavigate();
+
   return (
     <>
       <div className="lg:hidden bg-white shadow-lg p-3 fixed bottom-0 z-10 w-full flex items-center justify-between md:justify-evenly text-zinc-500 border">
@@ -112,11 +68,12 @@ export const MobileTabs = () => {
           >
             <div
               className={
-                "absolute -top-2 w-8 h-2 border-t-2 group-hover:border-black  "
+                "absolute -top-2 w-8 h-2 border-t-2 group-hover:border-black"
               }
             />
             {items.icon}
-            <h5 className="text-sm">{items.name}</h5>
+            {/* Use a more appropriate heading level */}
+            <h2 className="text-sm">{items.name}</h2> {/* Changed h5 to h2 */}
           </div>
         ))}
       </div>

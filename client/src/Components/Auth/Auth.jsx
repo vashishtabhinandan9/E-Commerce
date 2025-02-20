@@ -148,13 +148,12 @@ export function SignIn() {
                 required
                 ref={FirstNameRef}
                 id="FirstName"
-                aria-label="txtFirstName"
                 type="text"
-                className="w-11/12 h-8 peer  p-2.5 rounded-sm outline-none border  border-gray-300 focus:border-black text-sm "
-              ></input>
+                className="w-11/12 h-8 peer p-2.5 rounded-sm outline-none border border-gray-300 focus:border-black text-sm"
+              />
               <label
-                for="FirstName"
-                className="px-2 font-light absolute justify-self-center text-gray-500 h-6 text-sm tansition-transform ease-out duration-300 peer-focus:-translate-y-4  peer-focus:scale-75 peer-valid:-translate-y-4  peer-valid:scale-75 peer-focus:bg-white peer-focus:border-x peer-focus:border-black   peer-valid:bg-white peer-valid:border-x peer-valid:border-black"
+                htmlFor="FirstName" // Updated to htmlFor for JSX compatibility
+                className="px-2 font-light absolute justify-self-center text-gray-500 h-6 text-sm transition-transform ease-out duration-300 peer-focus:-translate-y-4 peer-focus:scale-75 peer-valid:-translate-y-4 peer-valid:scale-75 peer-focus:bg-white peer-focus:border-x peer-focus:border-black peer-valid:bg-white peer-valid:border-x peer-valid:border-black"
               >
                 First Name{" "}
                 <span className="text-red-500 text-lg font-bold"> * </span>
